@@ -15,13 +15,12 @@ unsigned int fibo(int n)
 		return 1; 
 	} 
 
-	cout << n <<endl; 	
 	g_FiboCache[n] = fibo(n-1) + fibo(n-2); 
 	return g_FiboCache[n]; 
 } 
 
 int main() 
 { 
-	cout << fibo(500) << endl; 
+	cout << fibo(10) << endl; 
 	return 0; 
 } 
