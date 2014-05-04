@@ -20,8 +20,6 @@ int main()
 	g_FiboCache[0] = 0; 
 	g_FiboCache[1] = 1; 
  
-	cout << fibo(2) << endl; 
-	cout << fibo(10) << endl; 
-	cout << fibo(0) << endl; 
+	cout << fibo(100) << endl; 
 	return 0; 
 } 
