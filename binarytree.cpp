@@ -1,5 +1,7 @@
 
 #include <iostream> 
+#include <cstdlib> 
+#include <cmath> 
 using namespace std; 
 
 typedef struct Node 
@@ -47,10 +49,30 @@ void Print(Node* Root)
 	Print(Root->right); 
 } 
 
-bool IsBalanced(Node* Root) 
-{ 
-    return true; 
+int GetHeight(Node* Root) 
+{
+	if (Root == NULL) 
+		return 0; 
+
+	int lh = GetHeight(Root->left);
+	if (lh == -1) 
+		return -1; 	
+	
+	int rh = GetHeight(Root->right); 
+	if (rh == -1) 
+		return -1; 
+
+	if (abs(lh - rh) > 1) 
+		return -1; 
+	else 
+		return max(lh, rh) + 1; 
 } 
+
+
+bool IsBalanced(Node* Root) 
+{
+	return (GetHeight(Root) != -1); 
+}  
 
 int main()
 { 
@@ -66,5 +88,6 @@ int main()
 
 	cout << (Search(&root, 11) ? "Found" : "Not Found") << endl; 	
 	cout << (Search(&root, 23) ? "Found" : "Not Found") << endl; 	
+	cout << IsBalanced(&root) << endl; 
 	return 0; 
 } 
