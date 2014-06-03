@@ -53,11 +53,13 @@ int GetHeight(Node* Root)
 {
 	if (Root == NULL) 
 		return 0; 
+	
+	cout << Root->item << endl; 
 
 	int lh = GetHeight(Root->left);
 	if (lh == -1) 
 		return -1; 	
-	
+ 	cout << "yes" <<endl; 	
 	int rh = GetHeight(Root->right); 
 	if (rh == -1) 
 		return -1; 
@@ -89,5 +91,12 @@ int main()
 	cout << (Search(&root, 11) ? "Found" : "Not Found") << endl; 	
 	cout << (Search(&root, 23) ? "Found" : "Not Found") << endl; 	
 	cout << IsBalanced(&root) << endl; 
+
+	Node* root2 = Insert(root2, 1); 
+	Insert(root2, 2); 
+	Insert(root2, 3); 
+	
+	cout << IsBalanced(root2) << endl; 
+
 	return 0; 
 } 
