@@ -47,6 +47,11 @@ void Print(Node* Root)
 	Print(Root->right); 
 } 
 
+bool IsBalanced(Node* Root) 
+{ 
+    return true; 
+} 
+
 int main()
 { 
 	Node root(10); 
