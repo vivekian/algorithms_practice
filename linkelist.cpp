@@ -54,10 +54,6 @@ namespace LinkedList
 			
 			*Head = prev;
 		}   
-
-		void Reverse_SubList(Node** Head, const int Start, const int End) 
-		{ 
-			
 	
 		void Delete(Node** Head, int Item) 
 		{ 
@@ -132,7 +128,41 @@ namespace LinkedList
 			return newHead; 
 		} 	
 
-} 
+		// The basic idea is to find the median, then reverse the rest of the list
+		// Next start merging it with the original list. 
+
+		void ZipList(Node* Head) 
+		{ 
+			Node* curr = Head; 
+			Node* median = Head; 
+			Node* prev = median; 
+
+			while(curr && curr->next) { 
+				curr = curr->next->next;
+				prev = median;  
+				median = median->next; 
+			} 
+
+			prev->next = NULL;
+			LinkedList::Reverse(&median); 
+			 
+			Node* b = median; 
+			Node* a = Head;
+			Node* anext = a->next; 
+			Node* bnext = b->next; 
+			
+			while(a) { 
+				a->next = b; 
+				b->next = anext; 
+				b = bnext; 
+				a = anext; 
+				if(a) 
+					anext = a->next; 
+				if(b) 
+					bnext = b->next; 
+			}  
+		} 
+} 		
 
 int main() 
 { 
@@ -166,6 +196,10 @@ int main()
 	LinkedList::Insert(&h2, 8); 
 
 	Node* h3 = LinkedList::Merge(&h1, &h2);  
+	cout << endl; 
+	LinkedList::Print(h3); 
+
+	LinkedList::ZipList(h3); 
 	cout << endl; 
 	LinkedList::Print(h3); 
 
