@@ -42,8 +42,23 @@ int Search(Node* Root, int Item)
 		return Search(Root->left, Item); 
 	else 
 		return Search(Root->right, Item); 
-} 
+}
 
+int IterativeSearch(Node* T, int Item) 
+{ 
+	while (T) 
+	{ 
+		if (T->item == Item) 
+			return 1; 
+		else if (Item < T->item) 
+			T = T->left; 
+		else 
+			T = T->right; 
+	} 
+	
+	return 0; 
+} 
+	
 void Print(Node* Root) 
 { 
 	if (Root == NULL) 
@@ -54,40 +69,18 @@ void Print(Node* Root)
 	Print(Root->right); 
 }
 
-bool ValidateBST(Node* Root) 
+bool IsBST(Node* Root, const int lower, const int higher) 
 { 
 	if (Root == NULL) 
 		return true; 
+	
+	if ((Root->item < lower) || (Root->item > higher))
+		return false; 
 
-	bool leftValid = false; 
-	bool rightValid = false; 	
+	return (IsBST(Root->left, lower, Root->item) || 
+			IsBST(Root->right, Root->item, higher)); 
+} 
 
-	if (Root->left)
-	{  
-		if (Root->left->item <= Root->item) 
-		{ 
-			leftValid = ValidateBST(Root->left); 
-		} 
-	} 
-	else 
-	{ 
-		leftValid = true; 
-	} 
-
-	if (Root->right) 
-	{ 
-		if (Root->right->item > Root->item) 
-		{ 
-			rightValid = ValidateBST(Root->right); 
-		}
-	} 
-	else 
-	{ 
-		rightValid = true;
-	} 
-
-	return leftValid && rightValid; 
-}  
 
 int FindMin(Node* Root) 
 { 
@@ -217,13 +210,15 @@ int main()
 
 	cout << (Search(root, 11) ? "Found" : "Not Found") << endl; 	
 	cout << (Search(root, 23) ? "Found" : "Not Found") << endl; 	
+	cout << (IterativeSearch(root, 11) ? "Found" : "Not Found") << endl; 	
+	cout << (IterativeSearch(root, 23) ? "Found" : "Not Found") << endl; 	
 	cout << IsBalanced(root) << endl; 
 	
 	cout << DoesPathSumExist(root, 0, 100) << endl; 
 	cout << DoesPathSumExist(root, 0, 24) << endl; 
 	cout << DoesPathSumExist(root, 0, 35) << endl; 
 
-	cout << ValidateBST(root) << endl; 
+	cout << (IsBST(root, 0, 32567) ? "BST Valid" : "BST Invalid") << endl; 
 	cout << FindMin(root) << endl; 
 	cout << FindMax(root) << endl;
 	cout << "11 " << GetNext(root, 11) << endl;  
