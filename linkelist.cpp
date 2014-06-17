@@ -78,7 +78,24 @@ namespace LinkedList
 				prev = curr; 
 				curr = curr->next; 
 			} 
-		} 	
+		} 
+
+		void DeleteList(Node* Head) 
+		{ 
+			if (!Head) 
+				return; 
+
+			Node* curr = Head->next; 
+			Node* prev = Head; 
+
+			while(prev) 
+			{ 
+				delete prev; 
+				prev = curr; 
+				if (curr) 
+					curr = curr->next; 
+			} 
+		}  
 
 		Node* Merge(Node* HeadA, Node* HeadB) 
 		{ 
@@ -186,16 +203,16 @@ int main()
 	cout << endl; 
 	LinkedList::Print(newhead); 
 
-	Node h1(1); 
-	LinkedList::Insert(&h1, 3); 
-	LinkedList::Insert(&h1, 5); 
-	LinkedList::Insert(&h1, 7); 
-	Node h2(2);
-	LinkedList::Insert(&h2, 4); 
-	LinkedList::Insert(&h2, 6); 
-	LinkedList::Insert(&h2, 8); 
+	Node* h1 = new Node(1); 
+	LinkedList::Insert(h1, 3); 
+	LinkedList::Insert(h1, 5); 
+	LinkedList::Insert(h1, 7); 
+	Node* h2 = new Node(2);
+	LinkedList::Insert(h2, 4); 
+	LinkedList::Insert(h2, 6); 
+	LinkedList::Insert(h2, 8); 
 
-	Node* h3 = LinkedList::Merge(&h1, &h2);  
+	Node* h3 = LinkedList::Merge(h1, h2);  
 	cout << endl; 
 	LinkedList::Print(h3); 
 
@@ -203,5 +220,6 @@ int main()
 	cout << endl; 
 	LinkedList::Print(h3); 
 
+	LinkedList::DeleteList(h3); 
 	return 0; 
 } 
