@@ -4,11 +4,7 @@
 
 void mystrcpy(char* s, char* t) 
 { 
-	while ((*t = *s) != '\0') 
-	{ 
-		s++; 
-		t++; 
-	} 
+	while ((*t++ = *s++)); 
 } 
 
 int main()
