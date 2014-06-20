@@ -8,7 +8,7 @@ typedef struct Grid
 
 bool IsValid(Grid& grid, const int Row, const int Col, int val)
 {
-	if (val == -1) 
+	if (val == 0) 
 		return true;  
 
 	for (int row = 0; row < 9; ++row)
@@ -34,7 +34,7 @@ bool GetNextCell(Grid& grid, int& row, int& col)
 { 
 	for (int i = 0; i < 9; ++i) { 
 		for (int j = 0; j < 9; ++j) {  
-			if(grid.cells[i][j] == -1) { 
+			if(grid.cells[i][j] == 0) { 
 			 	row = i; 
 				col = j;
 				return true;  
@@ -48,7 +48,7 @@ bool GetNextCell(Grid& grid, int& row, int& col)
 void PrintGrid(Grid& grid) 
 { 
 	for (int i = 0; i < 9; ++i) { 
-		for (int j = 0; j < 9; ++j) {  
+		for (int j = 0; j < 9; ++j) { 
 			cout << grid.cells[i][j] << " "; 
 		} 
 		cout << endl; 
@@ -71,7 +71,7 @@ bool SolveSudoko(Grid& grid)
 			grid.cells[row][col] = i; 
 			if (SolveSudoko(grid)) 
 				return true; 
-			grid.cells[row][col] = -1; 
+			grid.cells[row][col] = 0; 
 		} 
 	} 
 	 
@@ -84,7 +84,7 @@ int main()
 
 	for (int i = 0; i < 9; ++i) 
 		for (int j = 0; j < 9; ++j) 
-			grid.cells[i][j] = -1; 
+			grid.cells[i][j] = 0; 
 	
 	grid.cells[0][3] = 4; 
 	grid.cells[0][5] = 8; 
@@ -140,7 +140,6 @@ int main()
 	} 
 	
 	cout << "Sudoko is valid" << endl; 	
-	cout << "Solving Sudoko" << endl;
  
 	if (SolveSudoko(grid)) 
 		cout << "SUCCESS" << endl; 
@@ -155,6 +154,5 @@ int main()
 				cerr << "Invalid Sudoko!" << endl; 
 			} 
 		} 
-	} 
-	
+	}
 } 
