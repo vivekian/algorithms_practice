@@ -3,7 +3,8 @@
 #include <stdio.h> 
 
 void mystrcpy(char* s, char* t) 
-{ 
+{
+	// pay attention to the double paranthesis 
 	while ((*t++ = *s++)); 
 } 
 
