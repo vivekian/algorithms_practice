@@ -11,7 +11,7 @@ void memcpy(void* src, void* dst, size_t length)
 	const char* s = static_cast<const char*>(src); 
 	char* d = static_cast<char*>(dst); 
 
-	while(length--) 
+	while(length--)
 		*d++ = *s++; 
 	
 	return; 	

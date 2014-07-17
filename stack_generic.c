@@ -2,17 +2,17 @@
 #include <stdlib.h> 
 #include <string.h> 
 
-typedef struct vector 
+typedef struct Stack 
 { 
     void* ptr;
     unsigned elemSize; 
     unsigned logLength; 
     unsigned allocLength;
-} Vector; 
+} Stack; 
 
-int NewVector(Vector* V, unsigned ElemSize) 
+int NewStack(Stack* S, unsigned ElemSize) 
 { 
-    if (!V) 
+    if (!S) 
     { 
         printf("Null Pointer Exception\n"); 
         return 1; 
@@ -24,12 +24,12 @@ int NewVector(Vector* V, unsigned ElemSize)
         return 1; 
     } 
 
-    V->elemSize = ElemSize; 
-    V->logLength = 0;
-    V->allocLength = 4; 
-    V->ptr = malloc(V->allocLength * V->elemSize); 
+    S->elemSize = ElemSize; 
+    S->logLength = 0;
+    S->allocLength = 4; 
+    S->ptr = malloc(S->allocLength * S->elemSize); 
 
-    if (!V->ptr)
+    if (!S->ptr)
     { 
         printf("malloc failed\n"); 
         return 1; 
@@ -38,104 +38,104 @@ int NewVector(Vector* V, unsigned ElemSize)
     return 0; 
 }
 
-int IsEmpty(Vector* V) 
+int IsEmpty(Stack* S) 
 { 
-    return (V->logLength == 0); 
+    return (S->logLength == 0); 
 } 
 
-void PushVector(Vector* V, void* Elem) 
+void PushStack(Stack* S, void* Elem) 
 {
-    if (V->logLength == V->allocLength) 
+    if (S->logLength == S->allocLength) 
     {
-        V->allocLength *= 2 ; 
-        void* tmp = malloc(V->allocLength * V->elemSize); 
-        memcpy(tmp, V->ptr, V->logLength * V->elemSize); 
-        free(V->ptr); 
-        V->ptr = tmp; 
+        S->allocLength *= 2 ; 
+        void* tmp = malloc(S->allocLength * S->elemSize); 
+        memcpy(tmp, S->ptr, S->logLength * S->elemSize); 
+        free(S->ptr); 
+        S->ptr = tmp; 
     } 
 
-    void* start = (char*)(V->ptr) + (V->elemSize * V->logLength); 
-    memcpy(start, Elem, V->elemSize); 
-    V->logLength++; 
+    void* start = (char*)(S->ptr) + (S->elemSize * S->logLength); 
+    memcpy(start, Elem, S->elemSize); 
+    S->logLength++; 
     return; 
 } 
 
-int PopVector(Vector* V, void* Elem) 
+int PopStack(Stack* S, void* Elem) 
 { 
-    if (IsEmpty(V)) 
+    if (IsEmpty(S)) 
     { 
         printf("Stack is empty\n"); 
         return 1; 
     } 
 
-    void* start = (char*)(V->ptr) + ((V->logLength - 1) * V->elemSize); 
-    memcpy(Elem, start, V->elemSize);
-    V->logLength--; 
+    void* start = (char*)(S->ptr) + ((S->logLength - 1) * S->elemSize); 
+    memcpy(Elem, start, S->elemSize);
+    S->logLength--; 
     
-    if ((V->allocLength > 4) && (V->allocLength / V->logLength) > 1)  
+    if ((S->allocLength > 4) && (S->allocLength / S->logLength) > 1)  
     { 
-        V->allocLength /= 2; 
-        void* tmp = malloc(V->allocLength * V->elemSize); 
-        memcpy(tmp, V->ptr, V->logLength * V->elemSize); 
-        free(V->ptr); 
-        V->ptr = tmp; 
+        S->allocLength /= 2; 
+        void* tmp = malloc(S->allocLength * S->elemSize); 
+        memcpy(tmp, S->ptr, S->logLength * S->elemSize); 
+        free(S->ptr); 
+        S->ptr = tmp; 
     } 
 
     return 0; 
 } 
 
-void DeleteVector(Vector* V)
+void DeleteStack(Stack* S)
 { 
-    free(V->ptr); 
+    free(S->ptr); 
 } 
 
 int main() 
 {
-    Vector intV; 
+    Stack intS; 
     int i = 0; 
     int x; 
 
-    NewVector(&intV, sizeof(int)); 
+    NewStack(&intS, sizeof(int)); 
 
     for (i = 0; i < 16; i++) 
     { 
-        PushVector(&intV, (void*)&i);
+        PushStack(&intS, (void*)&i);
     } 
 
     for (i = 0; i < 16; i++) 
     { 
-        PopVector(&intV, &x); 
+        PopStack(&intS, &x); 
         printf("%d\n", x); 
     } 
 
-    DeleteVector(&intV); 
+    DeleteStack(&intS); 
     
-    Vector charV;
+    Stack charS;
     char y = 'a';  
 
-    NewVector(&charV, sizeof(char)); 
-    PushVector(&charV, (void*)&y); 
+    NewStack(&charS, sizeof(char)); 
+    PushStack(&charS, (void*)&y); 
     y++;
-    PushVector(&charV, (void*)&y);
+    PushStack(&charS, (void*)&y);
     y++;
-    PushVector(&charV, (void*)&y);
+    PushStack(&charS, (void*)&y);
     y++;
-    PushVector(&charV, (void*)&y); 
+    PushStack(&charS, (void*)&y); 
     y++;
-    PushVector(&charV, (void*)&y); 
+    PushStack(&charS, (void*)&y); 
 
-    PopVector(&charV, &y); 
+    PopStack(&charS, &y); 
     printf("%c\n", y); 
-    PopVector(&charV, &y); 
+    PopStack(&charS, &y); 
     printf("%c\n", y); 
-    PopVector(&charV, &y);
+    PopStack(&charS, &y);
     printf("%c\n", y); 
-    PopVector(&charV, &y);
+    PopStack(&charS, &y);
     printf("%c\n", y);
-    PopVector(&charV, &y);
+    PopStack(&charS, &y);
     printf("%c\n", y);
     
-    DeleteVector(&charV);  
+    DeleteStack(&charS);  
     
     return 0; 
 } 

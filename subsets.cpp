@@ -3,6 +3,9 @@
 
 using namespace std;
 
+// the principle to remember is to decide if a 
+// char is in or out and recursively call both 
+// functions. 
 void Subsets(string soFar, string rest) 
 { 
 	if (rest == "") 

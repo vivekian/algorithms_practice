@@ -98,7 +98,8 @@ namespace LinkedList
 		}  
 
 		Node* Merge(Node* HeadA, Node* HeadB) 
-		{ 
+		{
+			// take care of corner cases first  
 			if(!HeadA && !HeadB) 
 				return NULL; 
 			
@@ -112,6 +113,7 @@ namespace LinkedList
 			Node* b = HeadB; 
 			Node* newHead = NULL; 			
 
+			// choose a list to start with 
 			if (a->item > b->item) { 
 				newHead = b; 
 				b = b->next; 
@@ -123,6 +125,8 @@ namespace LinkedList
 
 			Node* tmp = newHead; 
  
+			// as long as both lists exist, 
+			// keep appending nodes 
 			while(a && b) { 
 				if (a->item > b->item) { 
 					tmp->next = b;

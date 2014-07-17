@@ -2,6 +2,9 @@
 #include <iostream> 
 using namespace std; 
 
+// the principle to remember is that you pick 
+// one char and permutate the other around it 
+// you need to go through each char in the list 
 void Permutate(string soFar, string rest) 
 { 
     if (rest == "") { 
