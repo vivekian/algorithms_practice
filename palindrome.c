@@ -2,7 +2,10 @@
 #include <stdlib.h> 
 
 int palindrome(const char* s) 
-{ 
+{
+	if (!s) 
+		return 0; 
+ 
 	const char* t = s; 
 
 	while(*t) { 
