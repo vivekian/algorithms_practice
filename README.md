@@ -1,4 +1,3 @@
-algorithms_practice
-===================
+algorithm practice 
 
-writing algorithms for fun and learning 
+the idea behind this repository is to try out algorithms and get better at it. 
