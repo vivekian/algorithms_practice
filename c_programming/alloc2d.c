@@ -6,7 +6,7 @@ int** alloc2d(int rows, int cols)
 	int** matrix =  malloc (rows * (sizeof(int*))); 
 	
 	int i = 0; 
- 	for( ; i < rows; i++) { 
+ 	for(; i < rows; i++) { 
 		matrix[i] = malloc (cols * (sizeof(int))); 
 	}  
 
@@ -18,7 +18,7 @@ int main()
 	int** matrix = alloc2d(10, 10); 
 
 	int i = 0; 
-	for ( ; i < 10; i++) 
+	for (; i < 10; i++) 
 		free(matrix[i]); 
 
 	free(matrix); 
