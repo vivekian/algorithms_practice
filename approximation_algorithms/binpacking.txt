@@ -29,3 +29,9 @@
             where b < min(m, n) 
     - Above explains itself based on sorting time and sweeping through all the bins for each item. 
     - There are more details in the Skiena book (pages 595)  
+
+- Applications of bin packing: 
+    * placing chunks of files in segmented memory location 
+    * placing different music tracks on a music CD. 
+    * packing advertisements into a television break 
+   
