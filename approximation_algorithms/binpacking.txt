@@ -1,0 +1,31 @@
+- Bin packing problem is stated as given n items with size Si, place them in as few bins as possible of unit capacity. 
+- Variant of the problem is that the bins could have different sizes. 
+
+- Possible solutions to the problem are: 
+    * Next Fit algorithm 
+    * First Fit algorithm 
+
+- Next fit algorithm requires that we pick up item in any given order and start placing them in bins. 
+- If an item does not fit in a bin, we close that bin (to never reopen it) and move on to the next bin. 
+- The key insight here is that for a given pair of bins (1,2 or 3,4 or 5,6), their combined weight is 
+  always greater than the unit capacity of a single bin. 
+        (Items in bin 2i -1) + next item > UnitCapacity 
+  This insight leads to the proof that: 
+        (Total weight of the items) > (k-1)/2 * UnitCapacity 
+  e.g. 2400 > (k-1)/2 * 100 
+       k < 49 is the upper bound for next fit algorithm. 
+- An optimum solution would k = (Total Weight)/UnitCapacity 
+    e.g. 2400/100 = 24 bins. 
+- How does Next Fit do with respect to OPT solution? 
+      #(bins by Next Fit) < 2 * OPT + 1 
+      e.g in the above example 
+        48 < 49 
+
+- First fit algorithm 
+    - Sort the items in decreasing order. 
+    - Insert each object one by one into the first bin which has room for it. 
+    - If no bin has room, then start a new bin. 
+    - This algorithm has a running time of O(nlgn) + bn 
+            where b < min(m, n) 
+    - Above explains itself based on sorting time and sweeping through all the bins for each item. 
+    - There are more details in the Skiena book (pages 595)  
