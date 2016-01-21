@@ -1,0 +1,12 @@
+- solve problems by combining solutions to subproblems.
+- solve every subproblem just once and save the solution in a table.
+- this way no recomputation is required (as compared to divide and conquer) 
+- typically applied to optimization problems. many solutions possible, but we choose optimal solution. 
+
+how to develop a dynamic algo? 
+- characterize the structure. 
+- recursively define the value of optimal solution. 
+- compute the value of optimal solution in bottom up fashion. 
+- construct optimal solution from given information. 
+
+the last step is not really required as such. 
