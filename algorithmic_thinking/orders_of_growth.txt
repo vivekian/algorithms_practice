@@ -1,0 +1,7 @@
+- focus on what impact does growth of input size have on running time. no one really cares about small values of n (log, exponential or polynomial).
+
+- analysis of running time focuses on orders of growth of functions. look at large number of input numbers. 
+
+- dominating function - e.g. compare 1000n vs n2. In this case n2 will start dominating 1000n when n>1000.
+
+- so lets an algo has a running time of 1000n + n2 +3n3 + n4. n4 is the dominating factor and will override all the other factors for large values of n.  
