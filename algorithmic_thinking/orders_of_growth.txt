@@ -5,3 +5,14 @@
 - dominating function - e.g. compare 1000n vs n2. In this case n2 will start dominating 1000n when n>1000.
 
 - so lets an algo has a running time of 1000n + n2 +3n3 + n4. n4 is the dominating factor and will override all the other factors for large values of n.  
+
+- lower bounds and upper bounds get an approximatation which gives us a good idea on how long the algorithm will take. 
+
+- asymptotic boundaries allow us to put upper and lower bounds to functions will give us an idea on how fast the function will grow. 
+
+- Big O notation refers to upper bound of a function where c.g(n) >= f(n) for n>n0 
+
+- Omega O notation refers to lower bound of a function where f(n) >= c.g(n) for n>n0
+
+- primary focus is always on upper bound to get worst case running time. 
+
