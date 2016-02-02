@@ -6,12 +6,13 @@
 // but we need to keep going till we sum upto a certain amount. 
 
 #include <cstdio> 
+#include <stdint.h> 
 
 namespace { 
-    int a[] = {0, 2, 3, 7}; 
+    uint32_t a[] = {0, 2, 3, 7}; 
 }
 
-int score_combinations(const int score, const int n) 
+int score_combinations(const int score, const uint32_t n) 
 { 
     if (score == 0) 
         return 1; 
@@ -31,4 +32,5 @@ int PossibleScoreCombinations(const int score)
 int main() 
 { 
     printf("%u\n", PossibleScoreCombinations(21));
+    printf("%u\n", PossibleScoreCombinations(6));
 }
