@@ -1,0 +1,11 @@
+- there are 2 ways to represent graphs. 
+- adjacency matrix 
+    * fast answer to if [x,y] are connected. 
+    * takes up a lot of space on sparse matrices. n2 
+- adjacency lists 
+    * use linked lists to store the neighbors. 
+    * easy to traverse through all neighbors. 
+    * easy to find the degree of a vertex 
+    * edge insertion/deletion O(d)
+
+in most cases just stick to adjacency lists.    

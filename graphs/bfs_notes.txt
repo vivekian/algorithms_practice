@@ -1,0 +1,7 @@
+- queue is used as the data structure to mark the nodes in the order which they should be visited. its important this is a queue because of its FIFO property. 
+
+- the idea is to measure the distance of each node in the graph from the starting node 0. to measure this we maintain an array called d[j] which measures the distance of each node j from node 0. all nodes are initially set to infinity to indicate that they have not been visited. 
+
+- one boundary case to keep in mind is that there could be a node which is completely disconnected from the rest of the graph. In this case the distance of the node from node 0 is infinity. This is taken care by the fact that we initialize the distance of each node to infinity. 
+
+
