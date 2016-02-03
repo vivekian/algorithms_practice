@@ -1,3 +1,5 @@
+// solution to 17.4 regarding finding number of paths to bottom of 2D grid.
+
 #include <cstdio> 
 #include <stdint.h> 
 
