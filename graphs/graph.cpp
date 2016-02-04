@@ -10,24 +10,26 @@ namespace {
 }
 
 typedef struct edgeNode { 
-    int y; 
+    uint32_t y; 
     edgeNode* next; 
 } edgeNode;
 
-typedef struct Graph { 
+typedef struct graph { 
     edgeNode* nodelist[MAXV]; 
-    int degree[MAXV]; 
-    int nvertices; 
-} Graph; 
+    uint32_t degree[MAXV]; 
+    uint32_t nvertices; 
+} graph; 
 
-void Initialize(Graph* g) 
+void Initialize(graph* g) 
 { 
     std::fill(g->nodelist, g->nodelist + MAXV, nullptr); 
-    std::fill(g->degree, g->degree+MAXV, 0); 
+    std::fill(g->degree, g->degree + MAXV, 0); 
     g->nvertices = 0; 
 }
 
-void InsertEdge(Graph* g, const int x, const int y, bool IsReverse)
+// watch out for the recursive call to make sure there is an edge 
+// from y to x as well. IsReverse just links on the other side.
+void InsertEdge(graph* g, const int x, const int y, const bool IsReverse)
 {
     edgeNode* node = new edgeNode; 
     node->y = y; 
@@ -39,7 +41,7 @@ void InsertEdge(Graph* g, const int x, const int y, bool IsReverse)
         InsertEdge(g, y, x, true);  
 }
 
-void PrintGraph(Graph* g) 
+void PrintGraph(const graph* const g) 
 { 
     for (int i=0; i<g->nvertices; ++i) { 
         printf("%d -> ", i); 
@@ -52,7 +54,7 @@ void PrintGraph(Graph* g)
     }
 }
 
-void BFS(Graph* g, uint32_t d[])
+void BFS(const graph* g, uint32_t d[])
 {
     for (int i=0; i<g->nvertices; ++i) 
         d[i] = UINT32_MAX; 
@@ -83,7 +85,7 @@ void BFS(Graph* g, uint32_t d[])
 
 int main() 
 { 
-    Graph g; 
+    graph g; 
     Initialize(&g);
     g.nvertices = 6; 
 
