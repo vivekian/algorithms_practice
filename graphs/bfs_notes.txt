@@ -4,4 +4,8 @@
 
 - one boundary case to keep in mind is that there could be a node which is completely disconnected from the rest of the graph. In this case the distance of the node from node 0 is infinity. This is taken care by the fact that we initialize the distance of each node to infinity. 
 
+- time complexity is O(n2) based on worst case scenario where every node is connected to every other node. We traverse every node atleast once as it gets queued and dequeued and then for every node which is dequeued we traverse all its neighbors. 
 
+- O(n2) does not hold in scenarios where graphes are extremely sparse. 
+
+- A tighter analysis tells us that what really matters is the number of edges instead of the number of nodes, because the number of edges dictates the number of times a node will be inspected. Keep in mind that regardless, O(n) is required to initialize the distance array to infinity. O(m) where m is the number of edges is required. 
