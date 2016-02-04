@@ -2,8 +2,8 @@
 
 #include <algorithm> 
 #include <cstdio> 
-#include <stdint.h> 
 #include <queue>
+#include <stdint.h> 
 
 namespace { 
     const int MAXV = 1000; 
@@ -56,11 +56,11 @@ void PrintGraph(const graph* const g)
 
 void BFS(const graph* g, uint32_t d[])
 {
+    std::queue<int> q;
+    
     for (int i=0; i<g->nvertices; ++i) 
         d[i] = UINT32_MAX; 
 
-    std::queue<int> q;
-   
     q.push(0); 
     d[0] = 0; 
 
@@ -75,9 +75,9 @@ void BFS(const graph* g, uint32_t d[])
                 d[p->y] = d[node] + 1; 
                 q.push(p->y); 
           } 
-          
           p=p->next; 
         }
+
     }
 
     return; 
