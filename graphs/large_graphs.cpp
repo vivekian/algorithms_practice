@@ -1,14 +1,18 @@
 //rudimentary graph representation and BFS solution. 
 
-#include <vector>
-#include <random> 
 #include <algorithm> 
+#include <chrono> 
 #include <cstdio> 
 #include <queue>
+#include <random> 
 #include <stdint.h> 
+#include <vector>
+#include <iostream> 
+
+using namespace std::chrono;
 
 namespace { 
-    const int MAXV = 500000; 
+    const uint32_t MAXV = 500000; 
 }
 
 typedef struct edgeNode { 
@@ -29,28 +33,23 @@ void Initialize(graph* g)
     g->nvertices = 0; 
 }
 
-bool DoesEdgeExist(const graph* const g, const int x, const int y) 
+void CleanGraph(graph* g) 
 { 
-    edgeNode* p = g->nodelist[x]; 
-
-    while(p) { 
-        if (p->y == y) 
-            return true; 
-        p = p->next; 
+    for (int i=0; i<g->nvertices; ++i) { 
+        edgeNode* p = g->nodelist[i]; 
+        while (p) { 
+            edgeNode* tmp = p;
+            p = p->next; 
+            if (tmp) 
+                delete tmp; 
+        }
     }
-
-    return false; 
 }
 
 // watch out for the recursive call to make sure there is an edge 
 // from y to x as well. IsReverse just links on the other side.
 void InsertEdge(graph* g, const int x, const int y, const bool IsReverse)
 {
-  /*   if (DoesEdgeExist(g, x, y))
-    { 
-        return; 
-    } */ 
-    
     edgeNode* node = new edgeNode; 
     node->y = y; 
     node->next = g->nodelist[x]; 
@@ -97,7 +96,6 @@ void BFS(const graph* g, uint32_t d[])
           } 
           p=p->next; 
         }
-        printf("Q size: %lu\n", q.size());
     }
 
     return; 
@@ -112,7 +110,6 @@ void GenerateGraph(graph* g, const int vertices, const int edgesPerNode)
 
     for (int i=0; i<vertices; ++i) { 
         int j=0; 
-        
         std::vector<bool> track(vertices, false);
        
         while (j < edgesPerNode) { 
@@ -127,18 +124,36 @@ void GenerateGraph(graph* g, const int vertices, const int edgesPerNode)
     }
 
 } 
-
+ 
+namespace { 
+    const int vertices_edges [6][2] = 
+    { 
+        {10,      1    }, 
+        {100,     10   }, 
+        {1000,    100  }, 
+        {10000,   1000 },
+        {100000,  1000 }, 
+        {9999999, 10000}
+    };
+}
+ 
 int main() 
 { 
-    const int NUM_VERTICES = 100000;
-    graph g; 
-    Initialize(&g);
-    GenerateGraph(&g, NUM_VERTICES, 1000); 
-    g.nvertices = NUM_VERTICES; 
+    for (int i=0; i<5; ++i) { 
+        graph g; 
+        Initialize(&g);
+        GenerateGraph(&g, vertices_edges[i][0], vertices_edges[i][1]); 
+        g.nvertices = vertices_edges[i][0]; 
 
-    uint32_t d[MAXV]; 
-    BFS(&g, d); 
+        uint32_t d[MAXV]; 
+        high_resolution_clock::time_point t1 = high_resolution_clock::now();    
+        BFS(&g, d);
+        high_resolution_clock::time_point t2 = high_resolution_clock::now();    
 
-
+        auto duration = duration_cast<microseconds>(t2 - t1).count();
+        std::cout << duration << std::endl; 
+ 
+        CleanGraph(&g); 
+    }
     return 0; 
 }
