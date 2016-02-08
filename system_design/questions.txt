@@ -1,0 +1,7 @@
+- How would you implement a system which has to run on two different OS's (e.g. iOS and Android)? How much code would you duplicate? What would you not duplicate? 
+
+- How do you implement a shopping cart scanner? 
+
+- How would you implement a map kind of structure in C which can store key-value pairs? You should be able to store any data type. Would you return a handle or a pointer? What operations would you define on it? 
+
+ 
