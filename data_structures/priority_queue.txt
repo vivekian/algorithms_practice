@@ -1,0 +1,29 @@
+- retrieval of items by the highest priority not by search or insertion time (e.g. stack) 
+
+- should be used if insertions are interversed with searches. they allow new items to be added to a sorted list. 
+
+- the key aspect of a pq is that if the intention is to retrieve greatest item, or delete greatest item, then its the right choice to be made.  
+
+- the basic operations on a priority queue are: 
+    Insert(x) - insert an element x in a sorted order in the pq. 
+    Find_Min() - find the min or max element in the pq 
+    Delete_Min() - delete the min or max element in the pq depending on the sorting order.  
+
+- there are multiple ways to implement a priority queue. 
+    
+    * Unsorted array 
+        - Insert(x) will take O(1) 
+        - Find_Min() will take O(1) if an index or pointer is maintained to point to the min/max.
+        - Delete_Min() will take O(n) time because we have to do these operations - Find_Min(), delete the current min, and then find the next Min() 
+
+    * Sorted array 
+        - Insert(x) will take O(n) as we have to find the correct position to insert the element 
+        - Delete_Min() will take O(1) time as we can store the smallest element at the bottom. 
+        - Find_Min() will take O(1) time as we delete the last element. 
+
+    * Balanced Tree 
+        - Insertion is O(lgn) as elements are sorted. 
+        - Deletion is O(lgn) as elements are rearranged. 
+        - Find_Min() is O(1) as min element is at the top of the tree. 
+
+  
