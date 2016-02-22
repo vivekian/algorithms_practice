@@ -1,0 +1,20 @@
+- complete binary tree with heap property: 
+    minheap: parent <= (left or right child) 
+
+- O(lg n) time to insert an element 
+- O(lg n) time to remove the root 
+- O(1) time to access the root 
+- O(n) time to remove random element
+
+- No pointers required, all manipulation done via array indices. 
+- parent(c) = 2n, 2n+1 
+- child(p) = n/2 
+
+- key procedures are bubble_up and bubble_down which take care of maintaining heap property. 
+
+- heapsort requires extracting all the elements from the array. 
+- how much time does heapsort take? 
+    * insertion n lg(n) - each insertion is lg(n) for n elements 
+    * removal   n lg(n) - each extraction is lg(n) for n elements
+
+- heaps are useful for priority queue implementation 
