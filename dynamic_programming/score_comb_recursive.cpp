@@ -31,6 +31,6 @@ int PossibleScoreCombinations(const int score)
 
 int main() 
 { 
-    printf("%u\n", PossibleScoreCombinations(21));
+    printf("%u\n", PossibleScoreCombinations(4000));
     printf("%u\n", PossibleScoreCombinations(6));
 }

@@ -1,29 +1,28 @@
+// A fairly simple implementation which assumes int data type, with only 
+// positive elements to be stored.  
+
 #include <iostream> 
 using namespace std; 
 
+// Maximum size of the priority queue 
 static const int MAX_SIZE = 100; 
 
 class PriorityQueue { 
 public: 
-    PriorityQueue():n(0)
+    PriorityQueue():n(0)                // empty queue 
     {}
 
     ~PriorityQueue() {}
 
     void insert(const int x) 
     { 
-        if (n >= MAX_SIZE) 
+        if (n >= MAX_SIZE)               
             return; 
         else { 
-            n++; 
+            ++n; 
             q[n] = x;
-            bubble_up(n);  
+            bubble_up(n);               // element should be in the correct place
         }
-    }
-
-    int getmin() 
-    { 
-        return q[1]; 
     }
 
     int extract_min() 
@@ -31,11 +30,11 @@ public:
         if (n == 0) 
            return -1; 
 
-        int min = q[1]; 
-        q[1] = q[n]; 
+        int min = q[1];                 // remove the top of the heap and move nth position  
+        q[1] = q[n];                    // element at the root. 
         --n; 
         
-        bubble_down(1); 
+        bubble_down(1);                 // now bubble down to maintain the heap property
         return min; 
     }
 
@@ -81,6 +80,8 @@ private:
          }
     }
 
+    // compare parent with both children and swap with the smaller child.
+    // then recursively call bubble_down with the child index. 
     void bubble_down(int p) 
     { 
         int c = child(p); 
@@ -99,8 +100,8 @@ private:
     }
 
 
-    int n; 
-    int q[MAX_SIZE];
+    int n;                  // n is the current size of the heap/priority queue  
+    int q[MAX_SIZE];        // int array to hold elements
 };
 
 
@@ -119,7 +120,6 @@ int main()
         item = pq.extract_min(); 
         pq.print(); 
     } while(item != -1); 
-
 
     return 0; 
 }
