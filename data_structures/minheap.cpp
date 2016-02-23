@@ -1,7 +1,9 @@
 // A fairly simple implementation which assumes int data type, with only 
 // positive elements to be stored.  
 
+#include <algorithm> 
 #include <iostream> 
+#include <vector>
 using namespace std; 
 
 // Maximum size of the priority queue 
@@ -10,7 +12,9 @@ static const int MAX_SIZE = 100;
 class PriorityQueue { 
 public: 
     PriorityQueue():n(0)                // empty queue 
-    {}
+    {
+        q.resize(MAX_SIZE);
+    }
 
     ~PriorityQueue() {}
 
@@ -38,6 +42,20 @@ public:
         return min; 
     }
 
+    int top() 
+    { 
+        return q[1]; 
+    }
+
+    int size()
+    { 
+        return n-1; 
+    }
+
+    bool contains(const int x)
+    {
+        return (q.end() == find(q.begin(), q.end(), x)) ? false:true;  
+    } 
 
     void print() 
     { 
@@ -101,7 +119,7 @@ private:
 
 
     int n;                  // n is the current size of the heap/priority queue  
-    int q[MAX_SIZE];        // int array to hold elements
+    vector<int> q;        // int array to hold elements
 };
 
 
