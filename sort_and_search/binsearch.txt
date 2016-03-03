@@ -1,0 +1,14 @@
+- if a search has to be done just once, then go ahead and linear search on the data. 
+- but if the search has to be done multiple times, then it makes sense to sort the data and then search it. 
+
+- time complexity analysis of binary search. 
+    * binary search takes O(lgn) time. 
+    * intuitively this makes sense because we always cut half of the array and proceed further 
+    * as we go down the height of the tree is O(lg n) 
+    * from a proof perspective, master theorm can be applied on the recurrance relation
+        - T(n) = T(n/2) + O(1) 
+        - now a = 1, b = 2, d = 0 (since n^d = 1, hence d=0) 
+        - a = b^d 
+        - time complexity is n^d O(lg n) = n^0 O(lg n) 
+
+    
