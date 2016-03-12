@@ -10,3 +10,5 @@ how to develop a dynamic algo?
 - construct optimal solution from given information. 
 
 the last step is not really required as such. 
+
+- caching intermediate problems which can be leveraged again and again indicates that the problem is good for dynamic problem. 
