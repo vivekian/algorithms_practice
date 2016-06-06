@@ -12,38 +12,22 @@ int bsearch(const vector<int>& a, const int T)
 {
     int lo = 0; 
     int hi = a.size() - 1;
+    int res = -1; 
 
     while (lo <= hi) { 
        int mid = lo + ((hi - lo)/2); 
 
-       if (a[mid] == T) 
-          return mid; 
+       if (a[mid] == T) { 
+           res = mid;       // this is the key change, to record res and carry on. 
+           hi = mid - 1; 
+       } 
        else if (a[mid] > T) 
           hi = mid - 1;  
        else 
           lo = mid + 1; 
     }
     
-    return -1; 
-}
-
-int findFirstItem(const vector<int>& a, const int T) 
-{ 
-    int index = bsearch(a, T); 
-  
-    if (index == -1) 
-        return index; 
-    
-    index--; 
-
-    while (index >= 0) {     
-        if (a[index] != T) { 
-           break;  
-        }
-        index--; 
-    }
-
-    return index+1;
+    return res;            // return res here. 
 }
 
 struct testcase { 
@@ -62,7 +46,7 @@ int main()
     };
 
     for (auto t: tests) { 
-       if (t.result == findFirstItem(t.arr, t.item)) { 
+       if (t.result == bsearch(t.arr, t.item)) { 
            cout << "test passed\n" << endl; 
        }
        else { 
