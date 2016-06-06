@@ -23,6 +23,8 @@
       The resolution: 
         mid = (lo + (hi - lo)/2)
 
+    * the terminating condition for the loop is always (lo <= hi) and never (hi > lo) which fails for some cases. 
+
 - disadvantage of binary search 
     * requires sorting initially which is always O nlg(n) 
 
