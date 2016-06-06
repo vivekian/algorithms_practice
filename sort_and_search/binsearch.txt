@@ -11,4 +11,19 @@
         - a = b^d 
         - time complexity is n^d O(lg n) = n^0 O(lg n) 
 
-    
+- things to keep in mind 
+    * there are always 3 conditions
+        target is equal to mid (return mid) 
+        target is smaller than mid (update hi to be mid-1) 
+        target is greater than mid (update lo to be mid+1) 
+
+    * when computing mid, keep in mind that this is incorrect 
+        mid = (lo + hi)/2 
+      The problem with this is that if you are on the extreme right of the array, there can be an overflow if lo and hi are added. 
+      The resolution: 
+        mid = (lo + (hi - lo)/2)
+
+- disadvantage of binary search 
+    * requires sorting initially which is always O nlg(n) 
+
+
