@@ -28,7 +28,8 @@ int upper_bound(const vector<int>& a, const int k)
     // till it goes out of bound and then no upper_bound exists. 
     if (lo == a.size()) 
         return -1; 
-    
+   
+    // see how lo is returned here instead of mid, because we are looking for upper_bound. 
     return lo; 
 }
 
@@ -41,11 +42,11 @@ struct test {
 int main() 
 {
    vector<test> testcases = { 
-       { {1,2,5,5,6,8,9,10}, 5, 4}, 
-       { {1,2,5,5,6,8,9,10}, 11, -1},
-       { {1,2,5,5,6,8,9,10}, 2, 2},
-       { {1,2,5,5,6,8,9,10}, 0, 0},
-       { {1,2,5,5,6,8,9,10}, 7, 5}
+       { {1,2,5,5,6,8,9,10}, 5, 4},         // item matches but duplicated 
+       { {1,2,5,5,6,8,9,10}, 11, -1},       // no upper_bound exists 
+       { {1,2,5,5,6,8,9,10}, 2, 2},         // simple case 
+       { {1,2,5,5,6,8,9,10}, 0, 0},         // searched item does not exist, but first element is upper_bound
+       { {1,2,5,5,6,8,9,10}, 7, 5}          // searched item does not exist, but in the middle 
    };
 
    for (auto &test: testcases) { 
