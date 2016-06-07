@@ -1,0 +1,22 @@
+- system design questions are weakly described. 
+- first step is always to gather requirements about the problem. 
+- the solution to be designed should cover all these requirements. 
+
+the bit.ly url shortening service. 
+    * how many users will be creating links? 
+    * how much usage sharing will be going around? 
+    * how many users would be clicking on these links? 
+    * are stats to be recorded for each of these clicks? 
+
+what are the usecases? 
+    - creation of unique URL 
+    - redirection of shortened URL to full URL. 
+    - creating custom URL 
+    - statistics 
+    - removing URL. 
+
+the important part is to ask the interviewer what usecases do they care about. 
+
+constraints: 
+    - how many requests should the site handle? 
+
