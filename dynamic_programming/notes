@@ -12,3 +12,8 @@ how to develop a dynamic algo?
 the last step is not really required as such. 
 
 - caching intermediate problems which can be leveraged again and again indicates that the problem is good for dynamic problem. 
+
+knapsack problem 
+    - it does not matter what sequence do you pick items in. 
+    - only matters what is your final subset 
+    - 
