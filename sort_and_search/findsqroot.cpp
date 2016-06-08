@@ -7,23 +7,25 @@
 #include <iostream> 
 #include <utility> 
 #include <vector> 
+#include <numeric> 
 
 using namespace std; 
 
-int square(int K) 
+long long square(int K) 
 { 
     return K * K; 
 }
 
 int findSqRoot(const int Num) 
 {
-    int lo = 1; 
-    int hi = Num;
+    long lo = 0; 
+    long hi = Num;
 
     while (lo <= hi) { 
 
-       int mid = lo + (hi - lo)/2; 
-       int prod = square(mid); 
+       
+       long long mid = (lo < 0) ?  (hi - lo)/2 : (lo + (hi - lo)/2); 
+       long long prod = square(mid); 
 
        if (prod == Num) {               // exact integer match 
            return mid; 
@@ -43,10 +45,12 @@ int main()
 { 
     vector<pair<int, int>> testcases = 
     { 
+        {0,0}, 
         {9,3}, 
         {12, 3}, 
         {1, 1}, 
-        {300, 17}
+        {300, 17}, 
+        {121, 11},
     }; 
 
     for (auto& test: testcases) { 
