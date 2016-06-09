@@ -11,12 +11,12 @@ typedef struct Node
 	Node* right; 
 	Node* parent; 
 	
-	Node(int Item): item(Item), left(NULL), right(NULL), parent(NULL)  {} 
+	Node(int Item): item(Item), left(nullptr), right(nullptr), parent(nullptr)  {} 
 } Node; 
 
 Node* Insert(Node* Root, int Item) 
 { 
-	if (Root == NULL)
+	if (Root == nullptr)
 		return new Node(Item); 
 	
 	if (Item <= Root->item) 
@@ -33,7 +33,7 @@ Node* Insert(Node* Root, int Item)
 
 int Search(Node* Root, int Item) 
 { 
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return 0; 
 
 	if (Root->item == Item) 
@@ -61,7 +61,7 @@ int IterativeSearch(Node* T, int Item)
 	
 void Print(Node* Root) 
 { 
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return; 
 	
 	Print(Root->left); 
@@ -71,7 +71,7 @@ void Print(Node* Root)
 
 bool IsBST(Node* Root, const int lower, const int higher) 
 { 
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return true; 
 	
 	if ((Root->item < lower) || (Root->item > higher))
@@ -84,7 +84,7 @@ bool IsBST(Node* Root, const int lower, const int higher)
 
 int FindMin(Node* Root) 
 { 
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return -1; 
 
 	Node* t = Root; 
@@ -97,7 +97,7 @@ int FindMin(Node* Root)
 
 int FindMax(Node* Root) 
 { 
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return -1; 
 	
 	Node* t = Root; 
@@ -110,7 +110,7 @@ int FindMax(Node* Root)
 
 int GetHeight(Node* Root) 
 {
-	if (Root == NULL) 
+	if (Root == nullptr) 
 		return 0; 
 	
 	cout << Root->item << endl; 
@@ -136,7 +136,7 @@ int GetHeight(Node* Root)
  
 int GetNext(Node* T, int Item)
 {
-	if (T == NULL) 
+	if (T == nullptr) 
 		return -1; 
 	
 	if(T->item == Item) 
@@ -175,7 +175,7 @@ int GetNext(Node* T, int Item)
 
 bool DoesPathSumExist(Node* Root, int Sum, const int PathSum) 
 { 
-	if (Root == NULL)
+	if (Root == nullptr)
 		return false; 
 
 	if (!Root->left && !Root->right) 
@@ -197,7 +197,7 @@ bool IsBalanced(Node* Root)
 
 int main()
 { 
-	Node* root = NULL;  
+	Node* root = nullptr;  
 	root = Insert(root, 10);   
 	Insert(root, 8);  
 	Insert(root, 12);  
