@@ -87,13 +87,24 @@ void FindKLargestItems(unique_ptr<BST_node<T>>& head, int k, vector<T>& items)
        FindKLargestItems(tmp->left, k, items);  
 } 
 
-/* 
+ 
 template <typename T> 
-T FindKthLargestUsingStack(unique_ptr<BST_node<T>>& head, int k) 
+void FindKthLargestItem(unique_ptr<BST_node<T>>& head, int k, int& count, T& item) 
 { 
+    if (head->right && count < k) 
+        FindKthLargestItem(head->right, k, count, item); 
 
+    ++count;
+
+    if (count == k) { 
+        item = head->data;
+        return;
+    } 
+
+    if (head->left && count < k) 
+        FindKthLargestItem(head->left, k, count, item); 
 }
-*/ 
+ 
 
 
 template <typename T>
@@ -138,6 +149,11 @@ int main(int argc, char ** argv)
 
     for (const auto& item: items) 
        cout << item << endl;  
+
+    unsigned int kItem;
+    int count=0; 
+    FindKthLargestItem(head, 4, count, kItem);
+    cout << kItem << endl; 
 
     return 0; 
 } 
