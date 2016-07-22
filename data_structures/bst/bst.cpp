@@ -77,13 +77,24 @@ void FindKLargestItems(unique_ptr<BST_node<T>>& head, int k, vector<T>& items)
 {
    unique_ptr<BST_node<T>> &tmp = head; 
 
-   if (tmp->right && items.empty()) 
+   if (tmp->right && items.size() != k) 
         FindKLargestItems(tmp->right, k, items); 
 
-   cout << "pushing " << tmp->data << endl; 
    if (items.size() != k) 
-       items.emplace_back(tmp->data); 
+       items.emplace_back(tmp->data);
+
+   if (tmp->left && items.size() != k) 
+       FindKLargestItems(tmp->left, k, items);  
 } 
+
+/* 
+template <typename T> 
+T FindKthLargestUsingStack(unique_ptr<BST_node<T>>& head, int k) 
+{ 
+
+}
+*/ 
+
 
 template <typename T>
 bool IsBST(const unique_ptr<BST_node<T>>& head, T lower, T higher) 
