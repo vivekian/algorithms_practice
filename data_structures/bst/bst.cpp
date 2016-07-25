@@ -1,5 +1,6 @@
 #include <iostream> 
 #include <memory> 
+#include <stack>
 #include <vector> 
 
 using namespace std; 
@@ -122,6 +123,71 @@ bool IsBST(const unique_ptr<BST_node<T>>& head, T lower, T higher)
             IsBST(head->right, head->data, higher)); 
 } 
 
+template <typename T>
+void NonRecursiveInorderTraversal(unique_ptr<BST_node<T>>& head) 
+{
+    stack<BST_node<T>*> stk;  
+    BST_node<T>* tmp = head.get(); 
+
+    while (tmp) { 
+        if (tmp->left) { 
+            stk.push(tmp);
+            tmp = tmp->left; 
+        }
+
+        cout << tmp->data;
+
+        if (tmp->right) { 
+            tmp = tmp->right; 
+        }
+    }
+}
+
+template <typename T> 
+bool IsBalanced (unique_ptr<BST_node<T>>& head) 
+{ 
+    if (head->right && head->left) 
+        return IsBalanced(head->left) && IsBalanced(head->right); 
+    else if (!head->right && !head->left) 
+        return true; 
+
+    return false; 
+}
+
+template <typename T>
+// This refers to problem 10.2 in EPI. Something to remember is that "Key" is the 
+// final solution which is passed by reference. the value returned is the number of 
+// nodes which are children to a node. 
+int FindKthBalancedRoot(unique_ptr<BST_node<T>>& Root, int k, uint32_t& Key) 
+{
+   int lnodes = 0, rnodes = 0; 
+
+   if (Root->left) 
+      lnodes = FindKthBalancedRoot(Root->left, k, Key); 
+   if (Root->right) 
+      rnodes = FindKthBalancedRoot(Root->right, k, Key);
+   if (abs(lnodes - rnodes) == k) 
+      Key = Root->data;
+    
+   return rnodes + lnodes + 1; 
+}
+
+void TestUnBalancedTree()
+{ 
+    vector<uint32_t> nums = {50, 20, 100, 75, 120, 60, 80, 90}; 
+
+    unique_ptr<BST_node<uint32_t>> head; 
+
+    for (const auto &num: nums)
+        head = Insert(move(head), num);  
+
+    InorderTraversal(head); 
+    cout << endl; 
+    uint32_t item = 0; 
+    FindKthBalancedRoot(head, 3, item); 
+    cout << item << endl;
+} 
+
 int main(int argc, char ** argv)
 {
     vector<uint32_t> nums = {10, 20, 8, 35, 6, 22, 3}; 
@@ -155,6 +221,10 @@ int main(int argc, char ** argv)
     FindKthLargestItem(head, 4, count, kItem);
     cout << kItem << endl; 
 
+    cout << IsBalanced(head) << endl; 
+
+    TestUnBalancedTree();     
+    
     return 0; 
 } 
 
