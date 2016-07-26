@@ -58,8 +58,45 @@ int FindKthBalancedRoot(unique_ptr<BT_node<T>>& Root, int k, uint32_t& Key)
    return rnodes + lnodes + 1; 
 }
 
+// solution to problem 10.3 if a tree is symmetric or not.
+// key insight is to elimnate all the 'false' cases first.
+// if the recursion reaches leaf null nodes, we return true. 
+template <typename T> 
+bool IsSymmetric(unique_ptr<BT_node<T>>& root1, unique_ptr<BT_node<T>>& root2) 
+{ 
+   if (!root1 && !root2) 
+       return true;
+
+   if ((!root1 && root2)  || (root1 && !root2)) 
+       return false; 
+
+   if (root1->data != root2->data) 
+       return false; 
+   
+   return (IsSymmetric(root1->left, root2->right) && 
+           IsSymmetric(root1->right, root2->left));
+}
+
+void TestSymmetry()
+{ 
+    unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
+    head->data = 100;
+    head->left = make_unique<BT_node<uint32_t>>(); 
+    head->left->data = 50;
+    head->left->right = make_unique<BT_node<uint32_t>>(); 
+    head->left->right->data = 25; 
+    head->right = make_unique<BT_node<uint32_t>>(); 
+    head->right->data = 50;  
+    head->right->left = make_unique<BT_node<uint32_t>>(); 
+    head->right->left->data = 25; 
+    cout << IsSymmetric(head, head) << endl; 
+    head->right->left->data = 15; 
+    cout << IsSymmetric(head, head) << endl; 
+}
+
 int main(int argc, char ** argv)
 {
+    TestSymmetry();
     return 0; 
 } 
 
