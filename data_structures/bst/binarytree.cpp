@@ -96,6 +96,37 @@ uint32_t SumNodes(unique_ptr<BT_node<bool>> &root, uint32_t num)
            SumNodes(root->right, num); 
 }
 
+bool DoesPathSumMatch(unique_ptr<BT_node<uint32_t>> &root, const uint32_t sum, uint32_t num) 
+{ 
+    if (!root) 
+        return false; 
+
+    num += root->data; 
+
+    if (num == sum) 
+        return true; 
+
+    return (DoesPathSumMatch(root->left, sum, num) || 
+            DoesPathSumMatch(root->right, sum, num));
+}
+
+void TestPathSumMatch() 
+{ 
+    unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
+    head->data = 100;
+    head->left = make_unique<BT_node<uint32_t>>(); 
+    head->left->data = 50;
+    head->left->right = make_unique<BT_node<uint32_t>>(); 
+    head->left->right->data = 25; 
+    head->right = make_unique<BT_node<uint32_t>>(); 
+    head->right->data = 50;  
+    head->right->left = make_unique<BT_node<uint32_t>>(); 
+    head->right->left->data = 25; 
+ 
+    cout << DoesPathSumMatch(head, 175, 0) << endl; 
+    cout << DoesPathSumMatch(head, 155, 0) << endl; 
+}
+
 void TestSumNodes() 
 { 
     unique_ptr<BT_node<bool>> head = make_unique<BT_node<bool>>(); 
@@ -133,6 +164,7 @@ int main(int argc, char ** argv)
 {
     TestSymmetry();
     TestSumNodes();
+    TestPathSumMatch(); 
     return 0; 
 } 
 
