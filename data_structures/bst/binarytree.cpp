@@ -126,7 +126,7 @@ void GetLeafNodes (const unique_ptr<BT_node<T>> &root, list<T> &leafnodes)
    GetLeafNodes(root->right, leafnodes); 
 } 
 
-void TestLeafNodes() 
+unique_ptr<BT_node<uint32_t>> MakeTree() 
 { 
     unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
     head->data = 30; 
@@ -143,6 +143,46 @@ void TestLeafNodes()
     head->right->right = make_unique<BT_node<uint32_t>>(); 
     head->right->right->data = 70; 
 
+    return head; 
+} 
+
+// The key idea is to store the right children in the stack 
+// to be remembered and processed at a later stage. The current
+// node will always be processed right away and the left node is processed
+// first after the current node is done. 
+void PreOrderTraversal(const unique_ptr<BT_node<uint32_t>>& head)
+{
+    BT_node<uint32_t>* curr = head.get();
+    stack<BT_node<uint32_t>*> stk; 
+
+    while (curr) {
+        cout << curr->data << " "; 
+        
+        if (curr->right) 
+            stk.push(curr->right.get()); 
+       
+        // keep going left as long as nodes exist 
+        curr = (curr->left) ? curr->left.get(): nullptr; 
+
+        // if a node does not exist, then pop out a right child
+        if (!curr && !stk.empty()){
+           curr = stk.top(); 
+           stk.pop(); 
+        }
+    }
+
+    cout << endl; 
+}
+
+void TestPreorder() 
+{ 
+    unique_ptr<BT_node<uint32_t>> head = MakeTree(); 
+    PreOrderTraversal(head); 
+} 
+
+void TestLeafNodes() 
+{ 
+    unique_ptr<BT_node<uint32_t>> head = MakeTree(); 
     list<uint32_t> leafnodes; 
     GetLeafNodes(head, leafnodes); 
 
@@ -208,6 +248,7 @@ int main(int argc, char ** argv)
     TestSumNodes();
     TestPathSumMatch(); 
     TestLeafNodes(); 
+    TestPreorder(); 
     return 0; 
 } 
 
