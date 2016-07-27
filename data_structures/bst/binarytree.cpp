@@ -126,20 +126,6 @@ void GetLeafNodes (const unique_ptr<BT_node<T>> &root, list<T> &leafnodes)
    GetLeafNodes(root->right, leafnodes); 
 } 
 
-template <typename T>
-int InorderTraversalIndexed(unique_ptr<BT_node<T>> &root, int k) 
-{ 
-    if (!root) 
-        return 0; 
-
-    k = InorderTraversalIndexed(root->left, k); 
-    ++k; 
-    cout << k << ": " << root->data << endl;
-    k = InorderTraversalIndexed(root->right, k); 
-
-    return k; 
-}
-
 void TestLeafNodes() 
 { 
     unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
@@ -181,7 +167,6 @@ void TestPathSumMatch()
  
     cout << DoesPathSumMatch(head, 175, 0) << endl; 
     cout << DoesPathSumMatch(head, 155, 0) << endl; 
-    // InorderTraversalIndexed(head, 0); 
 }
 
 void TestSumNodes() 
