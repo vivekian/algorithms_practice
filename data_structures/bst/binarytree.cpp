@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <list> 
 #include <memory> 
 #include <stack>
 #include <vector> 
@@ -110,6 +111,61 @@ bool DoesPathSumMatch(unique_ptr<BT_node<uint32_t>> &root, const uint32_t sum, u
             DoesPathSumMatch(root->right, sum, num));
 }
 
+// Insert all the leaf nodes in a linked list as they appear from left to right
+template <typename T> 
+void GetLeafNodes (const unique_ptr<BT_node<T>> &root, list<T> &leafnodes) 
+{
+   if (!root) 
+      return; 
+
+   GetLeafNodes(root->left, leafnodes);  
+
+   if (!root->left && !root->right) 
+       leafnodes.push_back(root->data); 
+
+   GetLeafNodes(root->right, leafnodes); 
+} 
+
+template <typename T>
+int InorderTraversalIndexed(unique_ptr<BT_node<T>> &root, int k) 
+{ 
+    if (!root) 
+        return 0; 
+
+    k = InorderTraversalIndexed(root->left, k); 
+    ++k; 
+    cout << k << ": " << root->data << endl;
+    k = InorderTraversalIndexed(root->right, k); 
+
+    return k; 
+}
+
+void TestLeafNodes() 
+{ 
+    unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
+    head->data = 30; 
+    head->left = make_unique<BT_node<uint32_t>>(); 
+    head->left->data = 20;
+    head->left->left = make_unique<BT_node<uint32_t>>(); 
+    head->left->left->data = 10; 
+    head->left->right = make_unique<BT_node<uint32_t>>(); 
+    head->left->right->data = 25; 
+    head->right = make_unique<BT_node<uint32_t>>(); 
+    head->right->data = 50;  
+    head->right->left = make_unique<BT_node<uint32_t>>(); 
+    head->right->left->data = 25; 
+    head->right->right = make_unique<BT_node<uint32_t>>(); 
+    head->right->right->data = 70; 
+
+    list<uint32_t> leafnodes; 
+    GetLeafNodes(head, leafnodes); 
+
+    for (const auto& leaf: leafnodes) 
+        cout << leaf << " "; 
+
+    cout << endl; 
+}
+
 void TestPathSumMatch() 
 { 
     unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
@@ -125,6 +181,7 @@ void TestPathSumMatch()
  
     cout << DoesPathSumMatch(head, 175, 0) << endl; 
     cout << DoesPathSumMatch(head, 155, 0) << endl; 
+    // InorderTraversalIndexed(head, 0); 
 }
 
 void TestSumNodes() 
@@ -154,7 +211,7 @@ void TestSymmetry()
     head->right = make_unique<BT_node<uint32_t>>(); 
     head->right->data = 50;  
     head->right->left = make_unique<BT_node<uint32_t>>(); 
-    head->right->left->data = 25; 
+    head->right->left->data = 45; 
     cout << IsSymmetric(head, head) << endl; 
     head->right->left->data = 15; 
     cout << IsSymmetric(head, head) << endl; 
@@ -165,6 +222,7 @@ int main(int argc, char ** argv)
     TestSymmetry();
     TestSumNodes();
     TestPathSumMatch(); 
+    TestLeafNodes(); 
     return 0; 
 } 
 
