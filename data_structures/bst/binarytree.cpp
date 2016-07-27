@@ -12,6 +12,8 @@ struct BT_node
 { 
     T data; 
     unique_ptr<BT_node<T>> left, right; 
+
+    BT_node():left(nullptr), right(nullptr){}
 }; 
 
 template <typename T>
@@ -77,6 +79,39 @@ bool IsSymmetric(unique_ptr<BT_node<T>>& root1, unique_ptr<BT_node<T>>& root2)
            IsSymmetric(root1->right, root2->left));
 }
 
+// solution to problem 10.6 of EPI 
+// if you are going to a nullptr from a leaf node, it does not contribute.
+// if you are going to a leaf node, then add its value to the sum and return.
+uint32_t SumNodes(unique_ptr<BT_node<bool>> &root, uint32_t num) 
+{ 
+    if (!root) 
+        return 0; 
+
+    num = (num << 1) + (root->data);
+    
+    if (!root->left && !root->right) 
+        return num; 
+
+    return SumNodes(root->left, num) + 
+           SumNodes(root->right, num); 
+}
+
+void TestSumNodes() 
+{ 
+    unique_ptr<BT_node<bool>> head = make_unique<BT_node<bool>>(); 
+    head->data = 1; 
+    head->left = make_unique<BT_node<bool>>(); 
+    head->left->data = 0; 
+    head->left->left = make_unique<BT_node<bool>>(); 
+    head->left->left->data = 1; 
+    head->left->right = make_unique<BT_node<bool>>(); 
+    head->left->right->data = 1; 
+    head->right = make_unique<BT_node<bool>>(); 
+    head->right->data = 1;
+
+    cout << SumNodes(head,0) <<endl;  
+}
+
 void TestSymmetry()
 { 
     unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
@@ -97,6 +132,7 @@ void TestSymmetry()
 int main(int argc, char ** argv)
 {
     TestSymmetry();
+    TestSumNodes();
     return 0; 
 } 
 
