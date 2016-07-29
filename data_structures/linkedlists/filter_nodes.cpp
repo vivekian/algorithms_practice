@@ -15,8 +15,10 @@ struct Node
     Node* next; 
 };
 
+// the pointer to the function is const, not the function itself. 
+// the data pointed to by head is const, not the pointer itself. 
 template <typename T>
-Node<T>* FilterLinkedList(const Node<T>* const head, bool (*func) (const T& data))
+Node<T>* FilterLinkedList(const Node<T>* head, bool (*const func) (const T& data))
 {
     Node<T>* newhead = nullptr, *newcurr = nullptr; 
     const Node<T>* curr = head; 
