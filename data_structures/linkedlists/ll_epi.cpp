@@ -70,6 +70,30 @@ Node<T>* Delete(Node<T>* head, const T& data)
 }
 
 template <typename T> 
+void RemoveDuplicates(Node<T>* head)
+{ 
+    if (!head || !head->next) 
+        return; 
+
+    Node<T>* curr = head->next, *prev = head; 
+   
+    while (curr) { 
+     
+        if (curr->data == prev->data) { 
+            prev->next = curr->next; 
+            free(curr); 
+            curr = prev->next;  
+        }
+        else {
+            prev = curr; 
+            curr = curr->next; 
+        } 
+     }
+
+}
+
+
+template <typename T> 
 Node<T>* Insert(const vector<T>& data)
 { 
     if (data.empty()) 
@@ -133,8 +157,19 @@ void TestDeleteNode()
     Print(newhead); 
 }
 
+void TestRemoveDuplicates() 
+{ 
+    vector<uint32_t> items = {1,1,2,3,3,4,5,5}; 
+    Node<uint32_t>* head = Insert(items); 
+    Print(head); 
+   
+    RemoveDuplicates(head); 
+    Print(head);  
+}
+
 int main()
 { 
     TestNodeFilter(); 
     TestDeleteNode(); 
+    TestRemoveDuplicates(); 
 } 
