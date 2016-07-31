@@ -69,6 +69,26 @@ Node<T>* Delete(Node<T>* head, const T& data)
     return head; 
 }
 
+// Reverse a linked list 
+template <typename T> 
+Node<T>* Reverse(Node<T>* const head) 
+{ 
+    if (!head || !head->next) 
+        return head; 
+    
+    Node<T>* prev = head, *curr = head->next; 
+    head->next = nullptr; 
+
+    while (curr) { 
+       Node<T>* nextnode = curr->next; 
+       curr->next = prev; 
+       prev = curr; 
+       curr = nextnode; 
+    } 
+
+    return prev; 
+} 
+
 template <typename T> 
 void RemoveDuplicates(Node<T>* head)
 { 
@@ -164,6 +184,9 @@ void TestRemoveDuplicates()
     Print(head); 
    
     RemoveDuplicates(head); 
+    Print(head);  
+
+    head = Reverse(head);
     Print(head);  
 }
 
