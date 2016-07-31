@@ -137,7 +137,7 @@ Node<T>* Insert(const vector<T>& data)
 } 
 
 template <typename T> 
-void Print(const Node<T>* const head) 
+void Print(const Node<T>* const head)
 { 
     const Node<T>* curr = head; 
 
