@@ -40,6 +40,35 @@ Node<T>* FilterLinkedList(const Node<T>* head, bool (*const func) (const T& data
     return newhead; 
 } 
 
+// delete a node in a singly linked list
+template <typename T>
+Node<T>* Delete(Node<T>* head, const T& data) 
+{
+    Node<T>* curr = head, *prev = curr; 
+
+    if (head->data == data) { 
+        head = head->next; 
+        free(curr); 
+        return head; 
+    } 
+
+    curr = curr->next; 
+
+    while (curr) {
+
+        if (curr->data == data) { 
+            prev->next = curr->next; 
+            free(curr); 
+            break;
+        }
+
+        prev = curr; 
+        curr = curr->next; 
+    }
+
+    return head; 
+}
+
 template <typename T> 
 Node<T>* Insert(const vector<T>& data)
 { 
@@ -91,7 +120,21 @@ void TestNodeFilter()
     Print(filterhead); 
 } 
 
+void TestDeleteNode() 
+{ 
+    vector<uint32_t> items = {1,2,3,4,5}; 
+    Node<uint32_t>* head = Insert(items); 
+    Print(head); 
+    
+    uint32_t k = 3, j = 1;  
+    Node<uint32_t> *newhead = Delete(head, k);     
+    Print(newhead);
+    newhead = Delete(head, j);     
+    Print(newhead); 
+}
+
 int main()
 { 
     TestNodeFilter(); 
+    TestDeleteNode(); 
 } 
