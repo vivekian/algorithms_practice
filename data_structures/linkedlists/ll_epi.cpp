@@ -129,6 +129,29 @@ Node<T>* Midpoint(Node<T>* head)
 } 
 
 template <typename T> 
+bool IsPalindrome(Node<T>* head) 
+{ 
+    Node<T>* midpoint = Midpoint(head); 
+    Node<T>* reversed = Reverse(midpoint); 
+    
+    while (head && reversed) { 
+        // reached the midpoint with odd number of elements 
+        if (head == reversed) 
+            return true; 
+        
+        if (head->data != reversed->data) { 
+            return false; 
+        } 
+
+        head = head->next; 
+        reversed = reversed->next; 
+    }
+
+    // reached end of list with 
+    return true; 
+}
+
+template <typename T> 
 Node<T>* Insert(const vector<T>& data)
 { 
     if (data.empty()) 
@@ -192,6 +215,14 @@ void TestDeleteNode()
     Print(newhead); 
 }
 
+void TestPalindrome()
+{ 
+    vector<uint32_t> items = {2, 3, 4, 3, 2}; 
+    Node<uint32_t>* head = Insert(items); 
+    Print(head); 
+
+    cout << IsPalindrome(head) << "\n";
+}
 void TestRemoveDuplicates() 
 { 
     vector<uint32_t> items = {1,1,2,3,3,4,5,5}; 
@@ -216,4 +247,5 @@ int main()
     TestNodeFilter(); 
     TestDeleteNode(); 
     TestRemoveDuplicates(); 
+    TestPalindrome(); 
 } 
