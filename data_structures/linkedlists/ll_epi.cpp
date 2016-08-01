@@ -112,6 +112,21 @@ void RemoveDuplicates(Node<T>* head)
 
 }
 
+template <typename T> 
+Node<T>* Midpoint(Node<T>* head) 
+{ 
+    if (!head || !head->next) 
+        return head; 
+
+    Node<T> *curr = head, *fwd = curr; 
+
+    while (fwd && fwd->next) {
+        curr = curr->next;
+        fwd = fwd->next->next; 
+    }
+
+    return curr; 
+} 
 
 template <typename T> 
 Node<T>* Insert(const vector<T>& data)
@@ -183,11 +198,17 @@ void TestRemoveDuplicates()
     Node<uint32_t>* head = Insert(items); 
     Print(head); 
    
+    Node<uint32_t>* midpoint = Midpoint(head); 
+    Print(midpoint); 
+    
     RemoveDuplicates(head); 
     Print(head);  
 
     head = Reverse(head);
     Print(head);  
+
+    midpoint = Midpoint(head); 
+    Print(midpoint); 
 }
 
 int main()
