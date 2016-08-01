@@ -222,6 +222,16 @@ void TestPalindrome()
     Print(head); 
 
     cout << IsPalindrome(head) << "\n";
+
+    vector<uint32_t> items2 = {2, 3, 3, 2}; 
+    Node<uint32_t>* head2 = Insert(items2); 
+    Print(head2);
+
+    cout << IsPalindrome(head2) << "\n";
+
+    items2 = {2,3,4}; 
+    head2 = Insert(items2); 
+    cout << IsPalindrome(head2) << "\n"; 
 }
 void TestRemoveDuplicates() 
 { 
