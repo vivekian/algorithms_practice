@@ -89,6 +89,7 @@ Node<T>* Reverse(Node<T>* const head)
     return prev; 
 } 
 
+// Remove duplicates from a sorted single linked list 
 template <typename T> 
 void RemoveDuplicates(Node<T>* head)
 { 
@@ -128,6 +129,8 @@ Node<T>* Midpoint(Node<T>* head)
     return curr; 
 } 
 
+// validate if a given single linked list has its elements 
+// in a palindrome
 template <typename T> 
 bool IsPalindrome(Node<T>* head) 
 { 
@@ -233,6 +236,72 @@ void TestPalindrome()
     head2 = Insert(items2); 
     cout << IsPalindrome(head2) << "\n"; 
 }
+
+// find the median of a circular linked list 
+template <typename T> 
+T FindMedianCircularList(Node<T>* random_node) 
+{
+    Node<T>* minNode = random_node, *curr = random_node->next;
+    int cnt = 1; 
+
+    // we have already iterated random_node as the first element, 
+    // so we stop when we reach it. 
+    while (curr != random_node) { 
+        if (curr->data <= minNode->data) { 
+            minNode = curr; 
+        } 
+        curr = curr->next; 
+        ++cnt; 
+    } 
+   
+    curr = minNode;
+    T median;  
+    int j = 0; 
+
+    // for odd numbers, the median is n/2th number 
+    // for even numbers, the median is (n/2) + (n/2)+1th element.
+    while (j < cnt) { 
+        if (j == ((cnt-1) >> 1)) { 
+            median = (cnt & 1) ? curr->data: ((curr->data) + (curr->next->data))/2;
+            break;
+        } 
+        ++j;     
+        curr = curr->next; 
+    }
+        
+    return median;           
+}
+
+// convert a linear linked list to a circular linked list 
+template <typename T> 
+void ConvertToCircular(Node<T>* head) 
+{ 
+    if (!head) 
+        return; 
+
+    Node<T>* curr = head; 
+
+    while (curr->next) 
+        curr = curr->next; 
+
+    // connect tail to head
+    curr->next = head; 
+} 
+
+void TestCircularList() 
+{ 
+    vector<uint32_t> items = {1,2,3,4,5}; 
+    Node<uint32_t>* head = Insert(items); 
+    Print(head); 
+    ConvertToCircular(head);
+    cout << FindMedianCircularList(head) << "\n"; 
+    items = {100, 2, 12, 23, 46, 78, 96, 99}; 
+    head = Insert(items); 
+    Print(head); 
+    ConvertToCircular(head);
+    cout << FindMedianCircularList(head) << "\n"; 
+}
+
 void TestRemoveDuplicates() 
 { 
     vector<uint32_t> items = {1,1,2,3,3,4,5,5}; 
@@ -258,4 +327,5 @@ int main()
     TestDeleteNode(); 
     TestRemoveDuplicates(); 
     TestPalindrome(); 
+    TestCircularList(); 
 } 
