@@ -174,10 +174,34 @@ void PreOrderTraversal(const unique_ptr<BT_node<uint32_t>>& head)
     cout << endl; 
 }
 
+void InorderTraversal(const unique_ptr<BT_node<uint32_t>> &head) 
+{ 
+    stack<BT_node<uint32_t>*> stk; 
+    BT_node<uint32_t>* curr = head.get(); 
+
+    // the key here is to push all the elements on the stack atleast once. 
+    while (curr || !stk.empty()) { 
+        if (curr->left) { 
+            stk.push(curr); 
+            curr = curr->left.get(); 
+        }
+        else { 
+            curr = stk.top(); 
+            stk.pop(); 
+            cout << curr->data << "\n"; 
+            curr = curr->right.get(); 
+        }
+    }
+
+    cout << endl; 
+}
+
+
 void TestPreorder() 
 { 
     unique_ptr<BT_node<uint32_t>> head = MakeTree(); 
     PreOrderTraversal(head); 
+    InearrderTraversal(head); 
 } 
 
 void TestLeafNodes() 
