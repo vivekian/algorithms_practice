@@ -272,6 +272,74 @@ T FindMedianCircularList(Node<T>* random_node)
     return median;           
 }
 
+
+// comment out this code till we have a proper fix for this 
+/*     
+template <typename T>
+Node<T>* PivotList(Node<T>* head, const T key) 
+{
+   if (!head) 
+       return nullptr;
+
+   // move the nodes which match the key together. 
+   Node<T>* curr = head, *firstkey = nullptr, *lastkey = nullptr; 
+   Node<T>* prev = curr;
+
+   while (curr) { 
+       if (curr->data == key) { 
+           if (!firstkey) { 
+               firstkey = prev; 
+               lastkey = curr; 
+           } 
+           else {
+              // remove the node from its current position
+              prev->next = curr->next; 
+              // move it to its new position
+              curr->next = lastkey->next; 
+              lastkey->next = curr;  
+              lastkey = curr; 
+           }
+       }
+       
+       prev = curr; 
+       curr = curr->next; 
+   }
+
+   // move all nodes which are smaller after firstkeynode 
+   curr = head, prev = head; 
+   
+   while (curr) { 
+      if (curr->data < key) { 
+            // remove from current position
+            prev->next = curr->next;  
+            //  move to new position 
+            curr->next = firstkey->next; 
+            firstkey->next = curr; 
+            firstkey = curr; 
+       }
+       else if (curr->data > key) { 
+            
+           if (head == curr) { 
+                head = curr->next; 
+            } 
+            else { 
+                // remove node from current position 
+                prev->next = curr->next; 
+            }
+            
+            // move to new position
+            curr->next = lastkey->next; 
+            lastkey->next = curr; 
+            lastkey = curr; 
+       } 
+        
+       prev = curr; 
+       curr = (head == curr) ? head->next: curr->next; 
+   } 
+   
+   return head; 
+}
+*/ 
 // convert a linear linked list to a circular linked list 
 template <typename T> 
 void ConvertToCircular(Node<T>* head) 
@@ -288,6 +356,48 @@ void ConvertToCircular(Node<T>* head)
     curr->next = head; 
 } 
 
+// Add two integers 
+Node<uint32_t>* AddIntegers(const Node<uint32_t>* l1, const Node<uint32_t>* l2) 
+{
+    Node<uint32_t>* resulthead = nullptr, *currresult = nullptr;
+    bool carryover = false; 
+
+    while (l1 || l2) { 
+        uint32_t intermediate_sum = 0; 
+        
+        if (l1) { 
+            intermediate_sum += l1->data; 
+            l1 = l1->next; 
+        } 
+
+        if (l2) { 
+            intermediate_sum += l2->data; 
+            l2 = l2->next; 
+        } 
+
+        if (carryover) 
+            intermediate_sum += 1; 
+
+        carryover = intermediate_sum > 9; 
+
+        // special case when resulthead is not assigned. 
+        if (!resulthead) { 
+            resulthead = new Node<uint32_t>(intermediate_sum % 10); 
+            currresult = resulthead; 
+        } 
+        else { 
+            currresult->next = new Node<uint32_t>(intermediate_sum % 10); 
+            currresult = currresult->next; 
+        }
+    }
+
+    if (carryover) { 
+        currresult->next = new Node<uint32_t>(1); 
+    } 
+
+    return resulthead;   
+}
+
 void TestCircularList() 
 { 
     vector<uint32_t> items = {1,2,3,4,5}; 
@@ -301,6 +411,16 @@ void TestCircularList()
     ConvertToCircular(head);
     cout << FindMedianCircularList(head) << "\n"; 
 }
+
+/* 
+void TestPivotList() 
+{ 
+    vector<uint32_t> items = {5, 4, 2, 3, 2, 1, 2}; 
+    Node<uint32_t>* head = Insert(items); 
+    Print(head); 
+    head = PivotList(head, uint32_t(2)); 
+    Print(head); 
+} */  
 
 void TestRemoveDuplicates() 
 { 
@@ -321,6 +441,20 @@ void TestRemoveDuplicates()
     Print(midpoint); 
 }
 
+void TestAddIntegers() 
+{ 
+    vector<uint32_t> num1 = {1, 1, 1}; 
+    vector<uint32_t> num2 = {9, 9, 9}; 
+
+    Node<uint32_t>* l1 = Insert(num1); 
+    Node<uint32_t>* l2 = Insert(num2); 
+    Print(l1); 
+    Print(l2); 
+
+    Node<uint32_t>* res = AddIntegers(l1, l2); 
+    Print(res); 
+} 
+
 int main()
 { 
     TestNodeFilter(); 
@@ -328,4 +462,5 @@ int main()
     TestRemoveDuplicates(); 
     TestPalindrome(); 
     TestCircularList(); 
+    TestAddIntegers(); 
 } 
