@@ -1,0 +1,5 @@
+Reconsider a binary tree from preorder traversal data with leaf nodes marked as null. 
+
+Given a preorder and inorder traversal data, reconstruct a binary tree.
+
+Compute the exterior of a binary tree  
