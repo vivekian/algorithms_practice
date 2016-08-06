@@ -3,6 +3,7 @@
 #include <memory> 
 #include <stack>
 #include <vector> 
+#include <queue> 
 
 // solving problems listed in Chapter 10 (BinaryTrees) of EPI (Elements of Programming Interviews)
 
@@ -126,6 +127,43 @@ void GetLeafNodes (const unique_ptr<BT_node<T>> &root, list<T> &leafnodes)
    GetLeafNodes(root->right, leafnodes); 
 } 
 
+// Print a binary tree on a per depth node basis
+// solution to problem 9.10 in EPI book
+template <typename T>
+void PrintBFSByDepth(const unique_ptr<BT_node<T>> &root) 
+{ 
+    if (!root) 
+        return; 
+     
+    // the idea is to use two queues where 
+    // one of the queues is used to store all the current
+    // level nodes
+    queue<BT_node<T>*> q; 
+    queue<BT_node<T>*> currlev;
+
+    q.emplace(root.get()); 
+     
+    while (!q.empty()) { 
+        while (!q.empty()) { 
+            currlev.emplace(q.front()); 
+            q.pop(); 
+        } 
+ 
+        while (!currlev.empty()) { 
+            BT_node<T>* node = currlev.front(); 
+            currlev.pop(); 
+            cout << node->data << " "; 
+            
+            if (node->left) 
+                q.emplace(node->left.get()); 
+            if (node->right) 
+                q.emplace(node->right.get()); 
+        }
+
+        cout << "\n"; 
+    } 
+}
+
 unique_ptr<BT_node<uint32_t>> MakeTree() 
 { 
     unique_ptr<BT_node<uint32_t>> head = make_unique<BT_node<uint32_t>>();  
@@ -201,8 +239,14 @@ void TestPreorder()
 { 
     unique_ptr<BT_node<uint32_t>> head = MakeTree(); 
     PreOrderTraversal(head); 
-    InearrderTraversal(head); 
+    // InearrderTraversal(head); 
 } 
+
+void TestPrintBSFNodes() 
+{ 
+    unique_ptr<BT_node<uint32_t>> head = MakeTree(); 
+    PrintBFSByDepth(head); 
+}
 
 void TestLeafNodes() 
 { 
@@ -273,6 +317,7 @@ int main(int argc, char ** argv)
     TestPathSumMatch(); 
     TestLeafNodes(); 
     TestPreorder(); 
+    TestPrintBSFNodes(); 
     return 0; 
 } 
 
