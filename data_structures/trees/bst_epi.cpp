@@ -129,17 +129,19 @@ void NonRecursiveInorderTraversal(unique_ptr<BST_node<T>>& head)
     stack<BST_node<T>*> stk;  
     BST_node<T>* tmp = head.get(); 
 
-    while (tmp) { 
-        if (tmp->left) { 
+    while (tmp || !stk.empty()) {
+      
+        if (tmp) {  
             stk.push(tmp);
-            tmp = tmp->left; 
+            tmp = tmp->left.get();
         }
-
-        cout << tmp->data;
-
-        if (tmp->right) { 
-            tmp = tmp->right; 
-        }
+        else { 
+            tmp = stk.top(); 
+            stk.pop();
+            cout << tmp->data << " ";
+            tmp = tmp->right.get(); 
+        } 
+    
     }
 }
 
@@ -204,6 +206,8 @@ int main(int argc, char ** argv)
     cout << IsBST(head, numeric_limits<uint32_t>::min(), numeric_limits<uint32_t>::max()) << endl; 
 
     InorderTraversal(head);  
+    cout << endl;
+    NonRecursiveInorderTraversal(head); 
     cout << endl;
 
     cout << FindKey(head, uint32_t(8))->data << endl; 
