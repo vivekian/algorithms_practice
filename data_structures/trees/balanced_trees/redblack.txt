@@ -14,4 +14,69 @@
 - Height of a red-black tree: 
     red black trees with n keys has a height of h <= 2lg(n) or O(lgN) 
 
+- Having a tree where all the leaves are at the same depth/level is a good thing
+  since this indicates that the tree is balanced. 
+
+- Queries are easy to implement, updates are what is key here (inserts, deletes) 
+
+- BST insert/delete won't preserve red/black properties. 
+
+- consider this tree: 
+
+                        B 
+                        | 
+                    ---------
+                    |       | 
+                    A      gamma
+                    | 
+                ---------
+                |       | 
+              alpha   beta 
+
+
+    * a right rotation would result in this: 
+                    
+                        A 
+                        | 
+                    ---------
+                    |       | 
+                 alpha      B 
+                            | 
+                        ---------
+                        |       | 
+                      beta    gamma 
+
+
+    The BST property should be maintained. Here alpha, beta, gamma are subtrees. 
+    This is true because B is > A and beta is smaller than B. 
+
+- now consider the left rotation tree which is the reverse: 
+
+                     
+                        A 
+                        | 
+                    ---------
+                    |       | 
+                 alpha      B 
+                            | 
+                        ---------
+                        |       | 
+                      beta    gamma 
+
+
+
+                        B 
+                        | 
+                    ---------
+                    |       | 
+                    A      gamma
+                    | 
+                ---------
+                |       | 
+              alpha   beta 
+
+ This also preserves the BST property because B > A and B > beta but beta > A. 
+
+- The rotation operations take constant time because pointer manipulation is fixed. 
+
  
