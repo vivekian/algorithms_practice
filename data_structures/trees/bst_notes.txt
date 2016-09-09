@@ -1,0 +1,13 @@
+Reconsider a binary tree from preorder traversal data with leaf nodes marked as null. 
+
+Given a preorder and inorder traversal data, reconstruct a binary tree.
+
+Compute the exterior of a binary tree  
+
+Find the successor of a key in a binary search tree: 
+
+    - check if a right subtree exists for the key: 
+        * if it does then get the minimum key of the subtree and return it. 
+    - if it does not, then get the parent of the key: 
+        * if the parent is non-null and the key is a right child, then update the child and parent by moving one layer up. 
+        * if the parent is null or key is non-right child, then return the parent as the successor.
