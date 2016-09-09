@@ -1,11 +1,11 @@
 - BST data structure with extra information - color field. 
 
 - Red Black properties: 
-    * every node is either Red or Black. 
-    * root and leaves are all Black. 
-    * every Red node's parent is Black.
-    * all simple paths from a node x to a descendent leaf of x has the same number 
-      of Black nodes in them. Height(Black) - count does not include x itself. 
+    1. every node is either Red or Black. 
+    2. root and leaves are all Black. 
+    3. every Red node's parent is Black.
+    4. all simple paths from a node x to a descendent leaf of x has the same number 
+       of Black nodes in them. Height(Black) - count does not include x itself. 
     
 - The above properties should force the tree to have log(n) height. 
 
@@ -79,4 +79,3 @@
 
 - The rotation operations take constant time because pointer manipulation is fixed. 
 
- 
