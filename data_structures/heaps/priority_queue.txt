@@ -2,7 +2,7 @@
 
 - should be used if insertions are interversed with searches. they allow new items to be added to a sorted list. 
 
-- the key aspect of a pq is that if the intention is to retrieve greatest item, or delete greatest item, then its the right choice to be made.  
+- the key aspect of a pq is that if the intention is to retrieve greatest item, or delete greatest item,then its the right choice to be made.  
 
 - the basic operations on a priority queue are: 
     Insert(x) - insert an element x in a sorted order in the pq. 
@@ -26,4 +26,3 @@
         - Deletion is O(lgn) as elements are rearranged. 
         - Find_Min() is O(1) as min element is at the top of the tree. 
 
-  
