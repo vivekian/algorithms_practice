@@ -74,7 +74,7 @@ void write_k_sorted_entries(ostream& os, const int k)
 
 int main() 
 {
-    int k = 4;  
+    int k = 4; 
     read_log_entries(string("pages.log"));
     sort_by_highest(); 
     write_k_sorted_entries(cout, k); 
