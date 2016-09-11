@@ -4,6 +4,8 @@
 
 using namespace std; 
 
+// the key here is the seperator. if don't parmaterize it
+// you cant reuse the function to reverse words. 
 void reverse_word(char* word, char seperator) 
 { 
     if (!word || !(*word)) 
