@@ -1,4 +1,5 @@
 #include <iostream> 
+#include <queue> 
 #include <vector> 
 
 using namespace std; 
@@ -26,9 +27,39 @@ dll_node* make_dll(const vector<int>& items)
     return head; 
 }
 
+void write_bst(ostream& os, const dll_node* root) 
+{ 
+    if (!root) 
+        return; 
+
+    queue<const dll_node*> curr_level, next_level;
+
+    curr_level.push(root); 
+
+    while (!curr_level.empty()) { 
+        auto node = curr_level.front(); 
+        curr_level.pop(); 
+
+        os << node->value << " "; 
+
+        if (node->prev) { 
+           next_level.push(node->prev); 
+        } 
+        if (node->next) {
+           next_level.push(node->next);  
+        }
+
+        if (curr_level.empty()) { 
+            swap(curr_level, next_level); 
+            os << endl; 
+        }
+    } 
+        
+} 
+
 void write_dll(ostream& os, const dll_node* head) 
 { 
-    const dll_node* tmp = head; 
+    auto tmp = head; 
     
     while (tmp) { 
         os << tmp->value;  
@@ -41,10 +72,50 @@ void write_dll(ostream& os, const dll_node* head)
     os << endl; 
 }
 
+dll_node* convert_to_bst_helper(dll_node* start, dll_node* end) 
+{ 
+    if (start == end) { 
+        return start; 
+    }
+    if (!start || !end) { 
+       return nullptr; 
+    }
+
+    auto curr = start; 
+    auto mid = curr; 
+
+    while (curr != end && curr->next->next) { 
+        curr = curr->next->next; 
+        mid = mid->next; 
+    } 
+
+    if (mid->prev) 
+        mid->prev->next = nullptr; 
+    if (mid->next) 
+        mid->next->prev = nullptr; 
+
+    mid->next = convert_to_bst_helper(mid->next, end); 
+    mid->prev = convert_to_bst_helper(start, mid->prev); 
+
+    return mid; 
+} 
+
+dll_node* convert_to_bst(dll_node* head) 
+{
+    dll_node* curr = head; 
+
+    while (curr->next) { 
+        curr = curr->next; 
+    } 
+    
+    return convert_to_bst_helper(head, curr); 
+}
+
 int main() 
 { 
-    dll_node* head = make_dll(vector<int>({1,2,3,4,5,6,7,8,9}));
+    dll_node* head = make_dll(vector<int>({1,2,3,4,5,6,7,8,9,10,11,12,13,14}));
     write_dll(cout, head);  
-
+    dll_node* root = convert_to_bst(head); 
+    write_bst(cout, root); 
     return 0; 
 } 
