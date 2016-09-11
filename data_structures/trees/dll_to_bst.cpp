@@ -72,6 +72,15 @@ void write_dll(ostream& os, const dll_node* head)
     os << endl; 
 }
 
+// the idea is to find the middle node, and then recursively 
+// find the right and left children which are aliased by next 
+// and prev nodes. 
+//
+// its important to take note of the sentinal conditions, if either
+// of start or end is null, then return null. 
+//
+// once a node is removed from the dll as the subroot, then its next and 
+// prev nodes pointers poiting to it are set to null. 
 dll_node* convert_to_bst_helper(dll_node* start, dll_node* end) 
 { 
     if (start == end) { 
