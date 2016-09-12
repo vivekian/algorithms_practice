@@ -1,3 +1,6 @@
+// this is a partial solution to problem 15.15 of EPI (Elements of Programming Interviews) 
+// to update a BST (insertions/deletions). 
+
 #include <queue> 
 #include <iostream> 
 

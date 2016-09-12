@@ -1,3 +1,6 @@
+// this is the solution to problem 15.11 to convert a double linked list to a
+// binary search tree in EPI (Elements of Programming Interviews) 
+
 #include <iostream> 
 #include <queue> 
 #include <vector> 
@@ -119,6 +122,45 @@ dll_node* convert_to_bst(dll_node* head)
     
     return convert_to_bst_helper(head, curr); 
 }
+
+/* 
+dll_node* convert_to_dll_helper(dll_node* root) 
+{ 
+    dll_node* head; 
+
+    if (root->prev) { 
+       root->prev = convert_to_dll_helper(root->prev); 
+       root->prev->next = root; 
+    } 
+   
+    if (root->next) { 
+       root->next = convert_to_dll_helper(root->next); 
+
+       if (root->next->prev) { 
+           root->next = root->next->prev; 
+       }
+
+       root->next->prev = root; 
+    } 
+
+    while(root->next) { 
+        root = root->next; 
+    } 
+
+    return root;   
+} 
+
+dll_node* convert_to_dll(dll_node* root) 
+{ 
+    dll_node* head = convert_to_dll_helper(root); 
+
+    while (head->prev) { 
+        head = head->prev; 
+    } 
+
+    return head; 
+} 
+*/ 
 
 int main() 
 { 
