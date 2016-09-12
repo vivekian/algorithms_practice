@@ -30,6 +30,40 @@ bst_node* make_tree()
     return root; 
 }
 
+void assign_child_to_parent(bst_node* parent, bst_node* child, bool ischildright) 
+{ 
+    if (ischildright) { 
+        parent->right = child; 
+    } 
+    else { 
+        parent->left = child; 
+    } 
+} 
+
+void delete_node_helper(bst_node* parent, bst_node* delnode) 
+{
+     
+} 
+
+bool delete_node(bst_node* root, bst_node* delnode) 
+{ 
+    bool lres, rres;  
+    if (root->right == delnode || root->left == delnode) 
+    { 
+        delete_node_helper(root, delnode); 
+        return true; 
+    } 
+
+    if (root->left) { 
+        lres = delete_node(root->left, delnode); 
+    }
+    if (root->right) {  
+        rres = delete_node(root->right, delnode); 
+    } 
+
+    return lres || rres; 
+} 
+
 void write_bst(ostream& os, const bst_node* root) 
 { 
     if (!root) 
@@ -58,11 +92,6 @@ void write_bst(ostream& os, const bst_node* root)
         }
     } 
         
-} 
-
-bool delete_node(bst_node* root, bst_node* delnode) 
-{
-    return true; 
 } 
 
 int main() 
