@@ -1,4 +1,4 @@
-// solution to problem 15.15 of EPI
+// solution to problem 15.15 of EPI (Elements of Programming Interviews) 
 
 #include <algorithm> 
 #include <iostream> 
