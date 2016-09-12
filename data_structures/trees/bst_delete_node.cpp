@@ -42,7 +42,27 @@ void assign_child_to_parent(bst_node* parent, bst_node* child, bool ischildright
 
 void delete_node_helper(bst_node* parent, bst_node* delnode) 
 {
-     
+    bool ischildright = parent->right; 
+
+    if(!delnode->right) { 
+        assign_child_to_parent(parent, delnode->left, ischildright); 
+        return; 
+    } 
+    else if (!delnode->left) { 
+        assign_child_to_parent(parent, delnode->right, ischildright); 
+        return; 
+    } 
+    else { 
+        if (!delnode->right->left) { 
+            assign_child_to_parent(parent, delnode->right, ischildright); 
+        } 
+        else { 
+            auto tmp = delnode->right->left; 
+            delnode->right->left = tmp->right; 
+            tmp->right = delnode->right; 
+            assign_child_to_parent(parent, tmp, ischildright);   
+        } 
+    } 
 } 
 
 bool delete_node(bst_node* root, bst_node* delnode) 
