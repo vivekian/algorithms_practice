@@ -1,3 +1,8 @@
+#include <queue> 
+#include <iostream> 
+
+using namespace std; 
+
 struct bst_node 
 {
     int value; 
@@ -25,6 +30,36 @@ bst_node* make_tree()
     return root; 
 }
 
+void write_bst(ostream& os, const bst_node* root) 
+{ 
+    if (!root) 
+        return; 
+
+    queue<const bst_node*> curr_level, next_level;
+
+    curr_level.push(root); 
+
+    while (!curr_level.empty()) { 
+        auto node = curr_level.front(); 
+        curr_level.pop(); 
+
+        os << node->value << " "; 
+
+        if (node->left) { 
+           next_level.push(node->left); 
+        } 
+        if (node->right) {
+           next_level.push(node->right);  
+        }
+
+        if (curr_level.empty()) { 
+            swap(curr_level, next_level); 
+            os << endl; 
+        }
+    } 
+        
+} 
+
 bool delete_node(bst_node* root, bst_node* delnode) 
 {
     return true; 
@@ -33,5 +68,6 @@ bool delete_node(bst_node* root, bst_node* delnode)
 int main() 
 { 
     bst_node* root = make_tree(); 
+    write_bst(cout, root); 
     return 0; 
 } 
