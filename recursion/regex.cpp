@@ -89,34 +89,40 @@ bool grep_sre(const char* text, const char* regex)
 } 
 
 void run_test_cases() 
-{ 
-    vector<pair<const char*, const char*>>  testlist = {
-        { "apple", "app" }, 
-        { "apple", "pp" }, 
-        { "apple", "ppo" },  
-        { "apple", "pp." },  
-        { "apple", "p*." },  
-        { "apple", "*apple" },  
-        { "apple", "a*p.le" },  
-        { "apple", "a.*le" },  
-        { "apppple", "a.*le" }, 
-        { "appbpple", "a.*le" },
-        { "apple", "^apple"},
-        { "apple", "^pple"}, 
-        { "apple", "^apple$"},
-        { "apple", "pple$"},
-        { "apple", "p*l.$"}
+{
+   struct test { 
+      const char* text; 
+      const char* regex; 
+      bool result; 
+   }; 
+
+    vector<test>  testlist = {
+        { "apple", "app", true }, 
+        { "apple", "pp" , true },
+        { "apple", "ppo", false},
+        { "apple", "pp.", true },  
+        { "apple", "p*.", true },  
+        { "apple", "*apple", false}, 
+        { "apple", "a*p.le", true},  
+        { "apple", "a.*le",  true}, 
+        { "apppple", "a.*le", true}, 
+        { "appbpple", "a.*le", false},  
+        { "apple", "^apple", true},
+        { "apple", "^pple", false},
+        { "apple", "^apple$", true},
+        { "apple", "pple$", true}, 
+        { "apple", "p*l.$", true}
     }; 
 
     for (const auto& test: testlist) { 
-       cout << "text: " << test.first << " regex: " << test.second << " "; 
+       cout << "text: " << test.text << " regex: " << test.regex << " "; 
 
-       if (grep_sre(test.first, test.second)) { 
-           cout << "matches" << endl; 
+       if (grep_sre(test.text, test.regex) != test.result) { 
+           cout << "test failed" << endl; 
        } 
        else { 
-           cout << "no match" << endl; 
-       } 
+          cout << "\n"; 
+       }  
     }
 }   
 
