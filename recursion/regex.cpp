@@ -24,6 +24,11 @@ int match_star_chars(const char* text, int t, char p)
 
 bool grep_sre_helper(const char* text, const char* regex, int t_index, int r_index) 
 {
+    // check for $ char first before hitting other cases 
+    if (regex[r_index] == '$') { 
+        return (!text[t_index] && !regex[r_index+1]); 
+    } 
+
     // if text is over, but regex is not completed. 
     if (!text[t_index]) { 
         return (!regex[r_index]); 
@@ -49,7 +54,7 @@ bool grep_sre_helper(const char* text, const char* regex, int t_index, int r_ind
        
         inc = match_star_chars(text, t_index, text[t_index-1]); 
         ++r_index; 
-    }
+    } 
     else if (isalnum(regex[r_index])) {
        
         if (regex[r_index] != text[t_index]) { 
@@ -69,6 +74,10 @@ bool grep_sre_helper(const char* text, const char* regex, int t_index, int r_ind
 
 bool grep_sre(const char* text, const char* regex) 
 {
+    if (regex[0] == '^') {
+        return grep_sre_helper(text, regex, 0, 1); 
+    } 
+
     // go through each char in the text to match the substring
     for (int i=0; i<strlen(text); ++i) { 
        if (grep_sre_helper(text, regex, i, 0)) { 
@@ -91,7 +100,12 @@ void run_test_cases()
         { "apple", "a*p.le" },  
         { "apple", "a.*le" },  
         { "apppple", "a.*le" }, 
-        { "appbpple", "a.*le" }
+        { "appbpple", "a.*le" },
+        { "apple", "^apple"},
+        { "apple", "^pple"}, 
+        { "apple", "^apple$"},
+        { "apple", "pple$"},
+        { "apple", "p*l.$"}
     }; 
 
     for (const auto& test: testlist) { 
