@@ -1,3 +1,14 @@
 algorithm practice 
 
-the idea behind this repository is to try out algorithms and get better at it. 
+learning about data structures and algorithms. 
+
+- data structures
+    * arrays 
+    * binary trees 
+    * heaps 
+    * linked lists 
+
+- algorithms
+    * divide and conquer 
+    * greedy algorithms 
+    * dynamic programming  
