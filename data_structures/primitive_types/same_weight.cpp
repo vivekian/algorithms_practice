@@ -1,5 +1,6 @@
 
-// Problem 5.4 Find the closest integer with the same weight. 
+// Problem 5.4 of Elements of Programming Interviews (EPI) 
+// Find the closest integer with the same weight. 
 // The idea is that the number of bits which are set to 1 in an 
 // unsigned long define the weight of the integer. Find the 
 // closest integer of the same weight such that the diff between 
