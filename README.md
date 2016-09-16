@@ -9,6 +9,7 @@ learning about data structures and algorithms.
     * linked lists 
 
 - algorithms
+    * approximation algorithms
     * divide and conquer 
     * greedy algorithms 
     * dynamic programming  

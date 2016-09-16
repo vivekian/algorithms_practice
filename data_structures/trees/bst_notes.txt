@@ -1,8 +1,10 @@
-Reconsider a binary tree from preorder traversal data with leaf nodes marked as null. 
+Questions on BST/binary trees: 
 
-Given a preorder and inorder traversal data, reconstruct a binary tree.
+- Consider a binary tree from preorder traversal data with leaf nodes marked as null. 
 
-Compute the exterior of a binary tree  
+- Given a preorder and inorder traversal data, reconstruct a binary tree.
+
+- Compute the exterior of a binary tree  
 
 Find the successor of a key in a binary search tree: 
 
@@ -11,3 +13,8 @@ Find the successor of a key in a binary search tree:
     - if it does not, then get the parent of the key: 
         * if the parent is non-null and the key is a right child, then update the child and parent by moving one layer up. 
         * if the parent is null or key is non-right child, then return the parent as the successor.
+
+Delete a node from a BST 
+    - deleting a leaf node is trivial. 
+    - deleting a node with only a left or right child is also trivial. 
+    - deleting a node with both children is non trivial
