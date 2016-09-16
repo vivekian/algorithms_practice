@@ -1,3 +1,6 @@
+// allocate a 2D matrix memory dynamically 'C' style using 
+// a double pointer dereference. 
+
 #include <stdio.h> 
 #include <stdlib.h> 
 
