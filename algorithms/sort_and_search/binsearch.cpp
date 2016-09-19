@@ -7,7 +7,7 @@ int binsearch(int* a, const int size, int item)
 	int mid; 
 
 	// what this condition really means is that you have gone beyond 
-	// array boundaries to search for a not present element 
+	// array boundaries to search for an absent element 
 	while(hi > lo) 
 	{ 
 		mid = lo + ((hi - lo)/2); 
