@@ -11,13 +11,11 @@ bool reach_last_index(const vector<int>& items, int curr_idx)
 {
     // reached the last index, success.  
     if (items.size()-1 == curr_idx) { 
-        cout << endl; 
         return true; 
     } 
 
     // value is 0, can't proceed further. 
     if (items[curr_idx] == 0) { 
-        cout << endl; 
         return false; 
     } 
 
