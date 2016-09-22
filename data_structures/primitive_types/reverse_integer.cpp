@@ -9,6 +9,10 @@ int reverse (int x)
         return x; 
     } 
 
+    if (x == std::numeric_limits<int>::min()) { 
+        return 0; 
+    } 
+
     bool isnegative = false; 
 
     if (x < 0) { 
@@ -26,11 +30,6 @@ int reverse (int x)
        } 
        res = (res * 10) + (x % 10); 
        x /= 10; 
-    } 
-
-    // overflow 
-    if ((res < 0) && (!isnegative)) { 
-        return 0; 
     } 
 
     return isnegative ? (-1 * res): res; 
