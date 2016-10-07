@@ -9,6 +9,8 @@ struct rectangle {
     int bottomy; 
     int topy;
 
+    rectangle() {}  
+
     rectangle(int lx, int rx, int by, int ty)  
     { 
         leftx = lx; 
@@ -33,7 +35,25 @@ struct rectangle {
 
         return xintersect && yintersect; 
     } 
+
+    void write(ostream& os) 
+    {
+        os << leftx << "," << rightx << "," << bottomy << "," << topy << endl; 
+    } 
+     
 };
+
+rectangle super_rectangle(const rectangle& a, const rectangle& b) 
+{ 
+    rectangle res; 
+    
+    res.leftx = std::min(a.leftx, b.leftx); 
+    res.rightx = std::max(a.rightx, b.rightx); 
+    res.bottomy = std::min(a.bottomy, b.bottomy); 
+    res.topy = std::max(a.topy, b.topy); 
+
+    return res; 
+} 
 
 int main() 
 {
@@ -46,6 +66,9 @@ int main()
     cout << r2.intersect(r3) << endl; 
     cout << r3.intersect(r2) << endl; 
     cout << r3.intersect(r3) << endl; 
+
+    rectangle r4 = super_rectangle(r1, r2); 
+    r4.write(cout); 
 
     return 0; 
 }
