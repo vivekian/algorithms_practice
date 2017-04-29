@@ -10,6 +10,7 @@ int reverse (int x)
     } 
 
     if (x == std::numeric_limits<int>::min()) { 
+        cerr << "overflow" << endl; 
         return 0; 
     } 
 
@@ -26,6 +27,7 @@ int reverse (int x)
     while (x) { 
        // this is critical because we need to check for overflow before the overflow happens
        if (res > (std::numeric_limits<int>::max()/10)) { 
+           cerr << "overflow" << endl; 
            return 0; 
        } 
        res = (res * 10) + (x % 10); 
