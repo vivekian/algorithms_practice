@@ -44,35 +44,34 @@ int parseItem(string &s, int &loc)
     return res;
 }
 
+bool isValidSerialization(string preorder) 
+{
+    stack<Node> s; 
+    int i=0; 
+    int num = parseItem(preorder, i); 
 
-    bool isValidSerialization(string preorder) 
-    {
-        stack<Node> s; 
-        int i=0; 
-        int num = parseItem(preorder, i); 
- 
-        // parse the first item and push on stack. don't push null.    
-        if (num != -1) { 
-            s.push(num);
-        }
-
-        while(i<preorder.length()) {
-        
-            num = parseItem(preorder, i); 
-
-            if (s.empty()) {
-                  return false;
-            }
-
-            markChild(s);
-        
-            if (num != -1) {
-                s.push(Node(num));
-            }
-        }
-
-        return s.empty();
+    // parse the first item and push on stack. don't push null.    
+    if (num != -1) { 
+        s.push(num);
     }
+
+    while(i<preorder.length()) {
+    
+        num = parseItem(preorder, i); 
+
+        if (s.empty()) {
+              return false;
+        }
+
+        markChild(s);
+    
+        if (num != -1) {
+            s.push(Node(num));
+        }
+    }
+
+    return s.empty();
+}
 
 int main() 
 {
