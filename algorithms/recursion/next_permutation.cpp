@@ -16,42 +16,39 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 #include <vector>
 using namespace std; 
 
-void solve(vector<int> sofar, vector<int> rest, vector<vector<int>>& res)
-{
-	if (rest.empty()) {
-		res.push_back(sofar);
-	} 
-	else { 
-   		int i=0; 
-        while (i < rest.size()) { 
-            // don't pick up duplicate items 
-            if (i == 0 || rest[i] != rest[i-1]) { 
-                auto next = sofar; 
-                auto remaining = rest;
-                next.push_back(rest[i]); 
-                remaining.erase(remaining.begin()+i); 
-                solve(next, remaining, res); 
-            }
-            ++i; 
-		}
-	}
-}
-
 void nextPermutation(vector<int>& nums) {
-	vector<vector<int>> res;  
-	vector<int> sofar = {}; 
-  
-    auto sorted_nums = nums; 
-    sort(sorted_nums.begin(), sorted_nums.end());     
-	solve(sofar, sorted_nums, res); 
-
-    int idx = find(res.begin(), res.end(), nums) - res.begin(); 
     
-    if (idx == res.size()-1) { 
+    if (!nums.size()) { 
+        return; 
+    }
+
+    int len = nums.size(); 
+    int i = len-1; 
+
+    // start from last element and keep going if they are reverse sorted.
+    while (i && nums[i-1] >= nums[i]) { 
+        --i; 
+    }
+
+    // if reached the beginning of the array, then no greater list exists
+    // reverse and return the list.
+    if (i == 0) { 
         reverse(nums.begin(), nums.end()); 
     }
     else { 
-        nums = res[idx+1]; 
+        int val = nums[i-1]; 
+        int j = len-1; 
+
+        // find the element from the end of the list to the ith element
+        // which is greater than the nums[i-1] and swap it. 
+        while (j >= i && val >= nums[j]) { 
+            --j; 
+        }
+
+        swap(nums[i-1], nums[j]); 
+
+        // now reverse the remaining elements. 
+        reverse(nums.begin()+i, nums.end()); 
     }
 }
 
