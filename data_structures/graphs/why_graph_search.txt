@@ -1,0 +1,8 @@
+* are any 2 points connected? can you reach from point A to point B? 
+* driving directions. - shortest path. 
+* how to solve a sudoko puzzle? 
+    - there is an initial state 
+    - there is an end goal state
+    - formulate a plan from a start to an end goal. 
+
+
