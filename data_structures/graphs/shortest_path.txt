@@ -1,0 +1,17 @@
+* BFS computes the shortest path too, but only for edges which are 1 unit long. Djikastra's algorithm is way more efficent for where a cost is associated with the path. 
+
+* Each link has to have a non-negative length and there is always a source vertex from which all the distances originate and the distances have to be found out. 
+
+* Run time of the algo is m O(lg n) where m is the number of edges and n is the number of vertices. 
+* Input is the set of all edges E of the graph, (v, w, c) where v is tail, w is the head, and c is the cost. Also the set V which is the set of all vertices. 
+
+* We start with an empty set X which has no visted vertices and array A which has the shortest distances for all the vertices. 
+
+    - A[s] = 0 (where s is the source vertex). 
+    - X = {s} add s to the visited set X. 
+    - while (X != V) 
+        choose an edge in E which minimizes A[v] + l(w, v) where v belongs to X and w does not belong to X. 
+        add w to X. 
+        update A[w] 
+
+  
