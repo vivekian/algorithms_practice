@@ -1,0 +1,2 @@
+* explore aggressively, backtrack only when necessary. (e.g. in a maze). 
+
