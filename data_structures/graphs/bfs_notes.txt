@@ -11,3 +11,9 @@
 - A tighter analysis tells us that what really matters is the number of edges instead of the number of nodes, because the number of edges dictates the number of times a node will be inspected. Keep in mind that regardless, O(n) is required to initialize the distance array to infinity. O(m) where m is the number of edges is required. O(m+n). 
 
 - When a graph is completed, we get to O(n2) running time because m = n2. 
+
+Applications: 
+    * can compute shortest paths
+    * can compute connected components in an undirected graph.
+
+ 

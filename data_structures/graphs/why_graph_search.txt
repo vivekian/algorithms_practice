@@ -5,4 +5,13 @@
     - there is an end goal state
     - formulate a plan from a start to an end goal. 
 
+* basics of graph search 
+    - find everything findable from the start vertex. 
+    - search should be efficient - don't repeat visits to indices. 
+    - goal is O(m+n) where m is vertices and n is the number of edges. 
+    - generic algo: 
+        - create empty set s no nodes are visited. 
+        - while possible: 
+               explore edge and mark node as visited 
+         
 
