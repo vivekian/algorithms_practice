@@ -1,2 +1,25 @@
 * explore aggressively, backtrack only when necessary. (e.g. in a maze). 
+* DFS explore the entire graph opposed to BFS. 
+* use recursive solution to explore the graph and backtrack when necessary. 
+
+* parent = {s};
+
+* DFS_visit(S, AdjList[s])  
+    for v in AdjList[s]     // explore all outgoing edges 
+        if v is not in parent 
+            parent[v] = s;
+            DFS_visit(v, AdjList[v]) 
+
+DFS (V, adj) 
+    parent = {}; 
+    for s in V:            // explore all vertices 
+        if s not in parent
+            parent[s] = none; 
+            DFS_visit(s, AdjList[s]); 
+
+* as you explore the graph if you have seen the vertex, then you skip it and don't visit again. 
+* in DFS, we start our search at all possible nodes, in case we don't know where to start. 
+
+upper bound: 
+    O(V+E) - linear time just like BFS. 
 
