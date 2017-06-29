@@ -23,3 +23,7 @@ DFS (V, adj)
 upper bound: 
     O(V+E) - linear time just like BFS. 
 
+edge classification: 
+    - every edge gets visited twice in undirected graph, once in directed graph. 
+   
+
