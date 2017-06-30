@@ -1,0 +1,12 @@
+* input is DAG 
+* order the vertices so that all edges point from lower order to higher order
+* vertices represent tasks & edges represent dependencies 
+* order tasks so that dependencies are not violated 
+* there can be no cycles 
+* some vertices could be unrelated and run in parallel because their ordering does not matter. 
+* when you are looking at a vertex, you have to make sure that all incoming edge vertices are completed first. otherwise you can’t move forward. 
+
+topological sort: 
+- run DFS 
+- output reverse of finishing time of vertices
+- this will give us the topological order 
