@@ -4,6 +4,11 @@
 using namespace std; 
 vector<bool> visited;
 
+// if there is a cycle in the graph, we can't complete the schedule. 
+// to detect a cycle, we have to find a backward edge(going from descendent to ascendent)
+// the way to find the edge is to have a list of courses which are part of the current 
+// recursive stack being explored.
+
 // pass currList by value instead of reference, because we want recursive stack list.
 bool DetectCycle(int course, vector<vector<int>>& graph, vector<bool> currList) {
         currList[course] = true;
