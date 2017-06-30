@@ -1,0 +1,15 @@
+edge classification: 
+    - when you visit a new vertex (parent pointers) tree edges 
+    - forward edges (they go from parent to descendent) 
+    - backward edges (they go from descendent to ancestor) 
+    - cross edges (between two non ancestral subtree) 
+
+how do you detect a backward edge? 
+- when doing DFS Visit, if the edge goes to a node which is on the recursion stack (being processed), then its an ancestor to the current node and hence the edge is backward. 
+- e.g. a -> b-> c -> d -> b 
+- If we start DFS_visit with a, then a, b, c, d are all on the recursion stack and when d has an 
+  edge going back to b, then we do know that b is an ancestor to d because its on the recursion stack. The edge from d to b is a backward edge. 
+
+cycle detection: 
+- G has a cycle if DFS of G has a backward edge. 
+
