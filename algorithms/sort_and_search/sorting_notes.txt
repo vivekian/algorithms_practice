@@ -1,0 +1,3 @@
+* a stable sort is where relative ordering of elements is preserved. 
+* a comparison sort as opposed to stable sort does not guarantee that relative ordering is maintained, so if a <= b and b <= a, then either of these could come first in the sorted order. In a stable sort this is not the case and the order is maintained. 
+* a comparison sort must have a running time of O(n lg n). 
