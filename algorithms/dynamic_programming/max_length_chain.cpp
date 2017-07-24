@@ -14,8 +14,13 @@ int findLongestChain(vector<vector<int>>& pairs) {
 	sort(pairs.begin(), pairs.end(), cmp); 
 	
 	int len = pairs.size(); 
-	vector<int> max_cnt(len, 0); 
-	int global_max = 0; 
+    
+    if (!len) { 
+        return 0; 
+    }
+	
+    vector<int> max_cnt(len, 1); 
+	int global_max = 1; 
 
 	for (int i=len-1; i >= 0; --i) { 
 		for (int j=i; j<len; ++j) { 
