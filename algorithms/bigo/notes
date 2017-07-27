@@ -1,0 +1,4 @@
+- best case complexity provides the lower bound on the performance on the algorithm (min number of steps for n steps). 
+- worst case complexity provides the upper bound on the performance on the algorithm (max number of steps for n steps). worst case is very important because its the most useful giving a cap. 
+
+
