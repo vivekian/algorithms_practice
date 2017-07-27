@@ -1,4 +1,22 @@
 - best case complexity provides the lower bound on the performance on the algorithm (min number of steps for n steps). 
-- worst case complexity provides the upper bound on the performance on the algorithm (max number of steps for n steps). worst case is very important because its the most useful giving a cap. 
+- worst case complexity provides the upper bound on the performance on the algorithm (max number of steps for n steps). 
+  worst case is very important because its the most useful giving a cap. 
+
+- big o notation removes the multiplicative constants from the equation and only focuses on the big numbers. it allows you to focus on the big picture and not the details. 
+it asks how does the algorithm behave when n gets to large values. 
+
+constant functions: O(1) - not dependent on size n. 
+log functions O(lg n) - splits the input by half each time. binary search, grow very slowly
+linear functions O(n) - grows linearly with the size of n. (find min in unsorted array, compute average value). 
+superlinear functions O(n lg n) - as good as linear but grows a bit more faster (merge sort, quicksort, heapsort). 
+quadratic functions O(n^2) - when each pair of elements in array are looked at. 
+cubic functions O(n3) - dynamic programming solutions require this. look through all triples in n element universe. 
+exponential functions 2^n - grow very fast. 
+factorial functions - n! 
+
+ 
+
+
+
 
 
