@@ -1,0 +1,11 @@
+logarithm is the opposite of exponential functions. 
+
+consider a tree with level 3 height. 
+    each level the number of children doubles. 
+    so by height 3, total number of nodes is 8. 2^3 = 8 
+    this is exponential growth. 
+
+now when a BST is traversed, we cut search space by half.
+so lg (n) is the time complexity because we discard half the nodes each time. 
+
+
