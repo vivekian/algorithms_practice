@@ -1,0 +1,5 @@
+stl::list 
+    - constant time insertion and removal anywhere in the list. 
+    - but in practice there are few instances when list is required. 
+    - profile code to figure out when this should be done, otherwise just skip it. 
+    - also list has a useful splicing feature which vectors don't have.  
