@@ -1,0 +1,22 @@
+use cases: 
+- convert long url to short url 
+- convert short url to long url and redirect 
+- rmeove a given url or maybe not? 
+
+implementation: 
+    maintain a hashmap which maps a key to a value (short url to long url) 
+    maintain a hashmap which maps the long url to a short url as well. 
+    need a method to generate the unique url as well. 
+
+scalability 
+    - place multiple horizontal slave servers ahead of the master slave. 
+    - these slave servers can be read only which cache data from master to serve the clients. 
+    - also think about geographic scalability - based on IP address if you figure out where the client request is coming, then redirect it to the appropriate slave server. 
+
+reliability: 
+    - maintain multiple masters which can be used for failover so if m1, fails then transfer control to m2. 
+    - software like zookeeper etc can be used to do this kind of detection etc. 
+    
+caching: 
+    - a hot cache can contain the top new URLs which are trending and cache them.
+
