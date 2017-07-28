@@ -2,6 +2,13 @@ use cases:
 - convert long url to short url 
 - convert short url to long url and redirect 
 - rmeove a given url or maybe not? 
+- can users specify their own short names or they always auto generated? 
+- should there be a user account associated with this? 
+- do we need to maintain analytics? 
+
+assumptions: 
+    - are there going to be 1 million new URLs being generated? 
+    - is it ok for URL replication not to work for 10 minutes after URL is generated?
 
 implementation: 
     maintain a hashmap which maps a key to a value (short url to long url) 
