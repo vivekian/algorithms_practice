@@ -1,0 +1,50 @@
+Cloud services must be available, fast, and secure. At cloud scale, this is a unique engineering feat. Therefore cloud-scale services are engineered differently than your typical enterprise service. 
+Being available is important because the Internet is open 24 × 7 and has users in every time zone. 
+Being fast is important because users are frustrated by slow services, so slow services lose out to faster rivals. 
+Being secure is important because, as caretakers of other people’s data, we are duty-bound (and legally responsible) to protect people’s data.
+
+Distributed computing describes an architecture where applications and services are provided using many machines rather than one.
+
+Here are some sample business objectives for distributed computing arch: 
+
+• Sell our products via a web site
+• Provide service 99.99 percent of the time
+• Process x million purchases per month, growing 10 percent monthly
+• Introduce new features twice a week
+• Fix major bugs within 24 hours
+
+Resilience: The system is resilient to failure. Rather than being surprised by failures and treating them as exceptions, the architecture accepts that hardware and software failures are a part of the physics of information technology (IT). As a result, the architecture includes redundancy and resiliency features that work around failures. Components fail but the system survives.
+
+Service oriented architechture: Each subsystem that makes up our service is itself a service. All subsystems are programmable via an application programming interface (API). Thus, the entire system is an ecosystem of interconnected subservices. This is called a service-oriented architecture (SOA). Because all these systems communicate over the same underlying protocol, there is uniformity in how they are managed. Because each subservice is loosely coupled to the others, all of these services can be independently scaled, upgraded, or replaced.
+
+IDEAL RELEASE PROCESS
+Our ideal environment has a smooth flow of code from development to operations.
+
+Traditionally (not in our ideal environment) the sequence looks like this:
+
+1. Developers check code into a repository.
+2. Test engineers put the code through a number of tests.
+3. If all the tests pass, the a release engineer builds the packages that will be used to deploy the software. Most of the files come from the source code repository, but some files may be needed from other sources such as a graphics department or documentation writers.
+4. A test environment is created; without an “infrastructure as code” model, this may take weeks.
+5. The packages are deployed into a test environment.
+6. Test engineers perform further tests, focusing on the interaction between subsystems.
+7. If all these tests succeed, the code is put into production.
+8. System administrators upgrade systems while looking for failures.
+9. If there are failures, the software is rolled back.
+
+Doing these steps manually incurs a lot of risk, owing to the assumptions that the right people are available, that the steps are done the same way every time, that nobody makes mistakes, and that all the tasks are completed in time.
+
+Rather than mega-releases, our ideal environment creates micro-releases. We reduce risk by doing many deployments, each with a few small changes. In fact, we might do 100 deployments per day.
+
+1. When the developers check in code, a system detects this fact and triggers a series of automated tests. These tests verify basic code functionality.
+2. If these tests pass, the process of building the packages is kicked off and runs in a completely automated fashion.
+3. The successful creation of new packages triggers the creation of a test environment. Building a test environment used to be a long week of connecting cables and installing machines. But with infrastructure as code, the entire environment is created quickly with no human intervention.
+4. When the test environment is complete, a series of automated tests are run.
+5. On successful completion the new packages are rolled out to production. The roll-out is also automated but orderly and cautious.
+6. Certain systems are upgraded first and the system watches for failures. Since the test environment was built with the same automation that built the production environment, there should be very few differences.
+7. Seeing no failures, the new packages are rolled out to more and more systems until the entire production environment is upgraded.
+
+Failure during a roll-out to production is essentially eliminated. However, if a failure does happen, it would be considered a serious issue warranting pausing new releases from going into production until a root causes analysis is completed. Tests are added to detect and prevent future occurrences of this failure. Thus, the system gets stronger over time.
+
+Our ideal environment scales automatically. As more capacity is needed, additional capacity comes from internal or external cloud providers. Our dashboards indicate when re-architecting will be a better solution than simply allocating more RAM, disk, or CPU.
+
