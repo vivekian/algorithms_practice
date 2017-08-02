@@ -24,21 +24,28 @@ public:
     }
     
     void put(int key, int value) {
+       // if the key already exists, then remove from the queue 
+       // and move it to the front since its a fresh hit 
        if (hashtable.find(key) != hashtable.end()) { 
 			q.remove(key);
 		}
 		else if (q.size() == cap) { 
-                hashtable.erase(q.back()); 
-				q.pop_back();
+            // hash table can only store cap number of entries, so remove the LRU entry. 
+            hashtable.erase(q.back()); 
+		    q.pop_back();
 		} 
 			
-	    q.push_front(key); 
+	    // move key to the front of the queue 
+        q.push_front(key); 
 		hashtable[key] = value; 
     }
 
 private: 
-	unordered_map<int, int> hashtable;
+	// this is the cache 
+    unordered_map<int, int> hashtable;
+    // list is used to maintain the queue of LRU items. 
 	list<int> q; 
+    // capacity of the queue 
 	int cap;  
 };
 
