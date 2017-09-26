@@ -1,5 +1,10 @@
 Questions on BST/binary trees: 
 
+BST allows fast search and also flexible addition and deletion of nodes. 
+However they require more space as compared to arrays because of additional left and right child pointers. 
+
+In a balanced BST, search, insertion, deletion are O(h) where h is the height of the tree. e.g. red-black trees. 
+
 - Consider a binary tree from preorder traversal data with leaf nodes marked as null. 
 
 - Given a preorder and inorder traversal data, reconstruct a binary tree.
