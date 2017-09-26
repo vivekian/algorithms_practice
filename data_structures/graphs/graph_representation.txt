@@ -1,7 +1,9 @@
 - there are 2 ways to represent graphs. 
+
 - adjacency matrix 
     * fast answer to if [x,y] are connected. 
     * takes up a lot of space on sparse matrices. n2 
+
 - adjacency lists 
     * use linked lists to store the neighbors. 
     * easy to traverse through all neighbors. 
@@ -10,3 +12,19 @@
 
 in most cases just stick to adjacency lists.    
 
+also keep in mind that a vector of edges is another way to store a graph vector<pair<int, int>> e.g. but int can be replaced by pointers to objects. 
+
+from stackoverflow.com: https://stackoverflow.com/questions/3287003/three-ways-to-store-a-graph-in-memory-advantages-and-disadvantages
+
+One way to analyze these is in terms of memory and time complexity (which depends on how you want to access the graph).
+
+Storing nodes as objects with pointers to one another
+	The memory complexity for this approach is O(n) because you have as many objects as you have nodes. 
+	The number of pointers (to nodes) required is up to O(n^2) as each node object may contain pointers for up to n nodes.
+	The time complexity for this data structure is O(n) for accessing any given node.
+	Works better for directed graphs - otherwise a pair has to be maintained for undirected graphs. 
+
+Storing a matrix of edge weights
+	This would be a memory complexity of O(n^2) for the matrix.
+	The advantage with this data structure is that the time complexity to access any given node is O(1).
+	Depending on what algorithm you run on the graph and how many nodes there are, you'll have to choose a suitable representation.
