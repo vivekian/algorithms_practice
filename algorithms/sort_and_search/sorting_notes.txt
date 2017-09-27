@@ -20,3 +20,10 @@ heapsort:
 - O(n lg n) time to extract all items from a heap 
 - inplace sort without using any extra memory
 
+mergesort: 
+- recursive algorithm which divides and conquers till we get to a single element. 
+- then merge the two sorted lists - run linearly through the lists and compare items, pull the smallest item and push it to the new list. 
+- time complexity is based on how much work is done per level on the recursion tree - O(n) comparisons are required per level and the number of levels is lg(n) because the number of items are halved at each level. 
+- great for sorting linked lists 
+- primary disadvantage is that whenever we have to merge, an auxillary array is required to store the result of the merge. 
+
