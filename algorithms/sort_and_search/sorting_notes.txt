@@ -1,3 +1,16 @@
+applications: 
+- searching - binary search on sorted records is O(n) 
+- finding two closest points in a sorted array 
+- element uniqueness - are there any duplicates? 
+- frequency distribution 
+- selection - what is the kth largest item in the array. 
+
+ordering in sorting: 
+- increasing or decreasing? 
+- what to do with equal keys? 
+- sort only keys or entire records? 
+- how to sort non-numerical data? 
+
 * a stable sort is where relative ordering of elements is preserved. 
 * a comparison sort as opposed to stable sort does not guarantee that relative ordering is maintained, so if a <= b and b <= a, then either of these could come first in the sorted order. In a stable sort this is not the case and the order is maintained. 
 * a comparison sort must have a running time of O(n lg n). 
