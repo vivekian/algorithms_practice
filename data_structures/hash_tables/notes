@@ -1,7 +1,11 @@
 - hash tables store objects based on key values. 
+
 - objects are located in an array based on a hashed value. 
+
 - if hash function is chosen well, then the keys are distributed well across the array locations. 
-- collisions occur when two keys map to the same hash value. maintain a linked list of objects at each array location. 
+
+- collisions occur when two keys map to the same hash value. maintain a linked list of objects at each array location. this is called chaining. the other approach is to use open addressing, where when we find a location is occupied, try to find contigous locations if they are free and use that. 
+
 - O(1) time on average to look up. 
 - hash tables are not sorted - so don't expect an order. in C++ notice how this works for unordered_map vs map (std::map is ordered, vs unordered_map where there is no ordering). 
 
