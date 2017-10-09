@@ -1,0 +1,29 @@
+1.2.1 
+
+10360 Rat Attack
+	DP/complete solution 
+10341 Solve It
+	Mathematics 
+11292 Dragon of Loowater 
+	Greedy 
+11450 Wedding Shopping 
+	
+10911 Forming Quiz Teams 
+11635 Hotel Booking
+11506 Angry Programmer 
+10243 Fire! Fire!! Fire!!! 
+10717 Mint
+11512 GATTACA
+10065 Useless Tile Packers
+
+1.2.2 
+	1. use priority queue 
+	2. DKTA 
+	3. Balanced Binary Search Tree 
+	4. Yes, it should be possible, but I DKTA to the optimal solution. 
+	5. Floyd Warshal 
+	6. Sieve of Eratosthenes
+	7. DKTA 
+	8. DKTA 
+	9. Niave approach won't work. But DKTA to the optimal approach. 
+
