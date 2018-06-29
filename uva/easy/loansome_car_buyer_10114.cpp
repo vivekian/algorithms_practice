@@ -28,6 +28,12 @@ void process_loan(const loan& l)
 {
    float curr_value = l.loan_amount + l.downpayment; 
    float loan_remaining = l.loan_amount;
+
+   if (l.num_months == 0) { 
+       cout << "0 month" << endl; 
+       return; 
+   }
+
    float monthly_payment = l.loan_amount / l.num_months;
 
    for (int rec=0; rec<l.drecs.size(); ++rec) 
@@ -39,8 +45,6 @@ void process_loan(const loan& l)
       {
             curr_value -= (curr_value * l.drecs[rec].dep); 
             loan_remaining -= monthly_payment;
-
-//            cout << m << " " << loan_remaining << " " << curr_value << endl;
 
             if (loan_remaining < curr_value) 
             {
