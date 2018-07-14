@@ -6,8 +6,10 @@
 using namespace std; 
 
 // complete exhaustive search 
-void print_all_sets(const vector<int>& s, const int k) 
+void print_all_subsets(const vector<int>& s) 
 {
+    int k = s.size(); 
+
     for (int a=0; a<k-5; a++) { 
         for (int b=a+1; b<k-4; b++) { 
             for (int c=b+1; c<k-3; c++) {
@@ -27,6 +29,6 @@ void print_all_sets(const vector<int>& s, const int k)
 int main()
 {
     vector<int> s = {1,2,3,4,5,6,7,8,9};
-    print_all_sets(s, 7);
+    print_all_subsets(s );
     return 0;  
 }
