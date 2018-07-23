@@ -1,0 +1,37 @@
+- fastest way to concatonate strings in c++ is to do the following: 
+
+   string concat(string a, string b)
+   {
+        a += b;     // this avoids creating a new instance of a string and appends to a.
+        return a;  
+   }
+
+- how to read a text file line by line? 
+
+    vector<string> readtext() 
+    {
+        vector<string> ret; 
+        string str; 
+
+        while(getline(std::cin, str) != EOF) { 
+            ret.push_back(move(str)); 
+        }
+
+        return ret; 
+    }
+
+- report multiple occurances of a substring in a string
+
+	vector<int> find_indexes(string T, string P) 
+	{
+		vector<int> res; 
+
+		auto pos = T.find(P);  
+
+		while (pos != string::npos) {
+			res.push_back(pos); 
+			pos = T.find(P, pos+1); 
+		}
+
+		return res; 
+	}   
