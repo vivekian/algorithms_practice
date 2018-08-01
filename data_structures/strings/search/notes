@@ -1,0 +1,34 @@
+There are multiple string search algorithms available. 
+
+Although the primary algorithm looks for a pattern in a string, we can expand this to searching for 
+a pattern in a large file or a big buffer etc. 
+
+The naive algorithm searches in O(n*m) time complexity where n is the length of the text 
+and m is the length of the pattern. If comparison fails early on, then complexity is closer to O(n). 
+
+KMP technique (knuth-morris-pratt) works better by building a reset table which uses a previous miscomparison
+to jump over characters and reduce comparisons to every character in the text. 
+
+Rabin-Karp is another technique which uses a rolling hash technique. 
+This first computes a hash over the pattern and then uses this to compare buffers with the same size as
+pattern. Here is the psuedocode: 
+
+int rabin_karp(string s, string p) 
+{
+    int hashp = hash(p); 
+
+    for (i=0; i<n-m+1; i+) { 
+        hashs = hash(s.substr(i, p.size());
+
+        if (hashs == hashp && p == s.substr(i, p.size()) 
+            return i; 
+    } 
+
+    return -1; 
+}
+
+There is the possibilities of hash collisions so we make sure that we do a string comparison. 
+
+Boyer-moore 
+Aho-Corasick
+
