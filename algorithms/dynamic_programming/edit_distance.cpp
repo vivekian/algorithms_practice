@@ -4,7 +4,7 @@
 // of 1 for addition or deletion. 
 
 // if one of the strings is empty, then the result is the size of the other string 
-// best resource: https://class.coursera.org/nlp/lecture/7
+// best resource: https://www.youtube.com/watch?v=Xxx0b7djCrs
 
 #include <stdint.h> 
 #include <string>
@@ -34,10 +34,8 @@ uint32_t edit_distance(const string& x, const string& y)
 
     for (int i=1; i<x.size(); ++i) { 
         for (int j=1; j<y.size(); ++j) { 
-            cost[i][j] = std::min(std::min(cost[i-1][j] + 1, 
-                                           cost[i][j-1] + 1), 
-                                  cost[i-1][j-1] + 
-                                           ((x[i] == y[j]) ? 0:2));
+            cost[i][j] = std::min(std::min(cost[i-1][j] + 1, cost[i][j-1] + 1), 
+                                           cost[i-1][j-1] + ((x[i] == y[j]) ? 0:2));
         }
     }
 
