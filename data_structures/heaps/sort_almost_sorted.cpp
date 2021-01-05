@@ -7,10 +7,6 @@ using std::priority_queue;
 using std::cout; 
 using std::endl; 
 
-namespace { 
-    auto comp = [] (uint32_t& a, uint32_t& b) { return a > b; }; 
-}
-
 // sort an almost sorted array where each element is no more than k elements away 
 // from its correctly sorted position. 
 //
@@ -24,7 +20,8 @@ namespace {
 
 vector<uint32_t> sort_almost_sorted(const vector<uint32_t> & nums, const int k) 
 { 
-    priority_queue<uint32_t, vector<uint32_t>, decltype(comp) > pq(comp); 
+    // implement a min pq. 
+    priority_queue<uint32_t, vector<uint32_t>, std::greater<uint32_t>> pq; 
     vector<uint32_t> sorted_array; 
   
     for (auto i=0; i<k; ++i) { 
@@ -32,10 +29,8 @@ vector<uint32_t> sort_almost_sorted(const vector<uint32_t> & nums, const int k)
     } 
 
     for (auto i=k; i<nums.size(); ++i) { 
-        
         sorted_array.push_back(pq.top()); 
         pq.pop(); 
-        
         pq.emplace(nums[i]); 
     }
 
